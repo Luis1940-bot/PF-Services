@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../img/logoivan.png"
+import logo from "../../images/logonavbar.png"
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -8,12 +8,16 @@ const Navbar = () => {
 
   return (
     <div className="Navbar">
-      <img className="nav-logo" src={logo} height={75} alt="logo"/>
+      <img className="nav-logo" href="/home" src={logo} height={60} alt="logo"/>
       <div className={`nav-items ${isOpen && "open"}`}>
         <a href="/home">Inicio</a>
-        <a href="/about">About</a>
-        <a href="/service">Service</a>
-        <a href="/contact">Contact</a>
+        <a href="/about">Nosotros</a>
+        <a href="/service">Servicios</a>
+        <a href="/contact">Testimonio</a>
+        <div className="containerButtonNav">
+          <button className="buttonNav">Registrate</button>
+          <button className="buttonNavTwo">Ingresa</button>
+        </div>
       </div>
       <div
         className={`nav-toggle ${isOpen && "open"}`}
