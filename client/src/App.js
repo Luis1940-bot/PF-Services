@@ -1,10 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route } from 'react-router-dom';
+import Landingpage from "./components/Landingpage/Landingpage.js"
 
 function App() {
   return (
     <div >
-      hola
+      <Route exact path="/" component={Landingpage} />
+      app.js
     </div>
   );
 }
