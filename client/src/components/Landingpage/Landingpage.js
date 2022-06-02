@@ -1,11 +1,17 @@
 import React from 'react'
-import Navbar from "../Navbar/Navbar.js"
+import "./Landingpage.css"
 
 
 function Home() {
   return (
-    <div >
-      <Navbar />
+    <div>
+      <div className='containerHome' >
+        <div>
+          <h1>Cuidado </h1>
+          <h1>y ayuda TERAPEUTICA a   </h1>
+
+        </div>
+      </div>
     </div>
   )
 }
