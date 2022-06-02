@@ -28,3 +28,5 @@ conn.sync({ force: true }).then(() => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });
+
+//primera instalacion de install 1/6/2022 22:15
