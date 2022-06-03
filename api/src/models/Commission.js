@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("commission", {
+  sequelize.define("commissions", {
     commission: {
       type: DataTypes.FLOAT,
       allowNull: true,
@@ -16,8 +16,8 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
-    tax: {
-      type: DataTypes.FLOAT,
+    date: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
   });
