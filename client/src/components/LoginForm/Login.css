@@ -1,0 +1,164 @@
+.form {
+  margin: 2rem;
+  width: 37.5vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 60px;
+  color: var(--main-second-color);
+}
+
+.inputs {
+  height: 4.21875vw;
+  border-radius: 40.5px;
+}
+
+.inputs::placeholder {
+  font-size: 36px;
+  padding: 30px;
+}
+
+.error1 {
+  height: 3.7760416666666665vw;
+  margin-top: 0px;
+  margin-left: 40px;
+  color: var(--main-second-color);
+}
+
+.error2 {
+  height: 2.34375vw;
+  color: var(--main-second-color);
+  margin-left: 40px;
+}
+
+.labelCheck {
+  height: 3.7760416666666665vw;
+  padding-bottom: 10px;
+  margin-left: 40px;
+  color: var(--main-first-color);
+}
+
+.buttons {
+  border: none;
+  background: none;
+  position: relative;
+  left: 16vw;
+}
+
+.buttonsImg {
+  height: 63px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.principalButton {
+  font-size: 2.34375vw;
+  color: white;
+  background-color: var(--main-first-color);
+  border: 0;
+  height: 4.21875vw;
+  width: 37.5vw;
+  border-radius: 60px;
+
+  margin-bottom: 10px;
+}
+
+.forget {
+  border: none;
+  background: none;
+  color: var(--main-first-color);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sideImage {
+  height: 48.5vw;
+  position: absolute;
+  right: 18px;
+  bottom: 0px;
+}
+
+.responsive {
+  display: none;
+}
+
+.sidePage {
+  position: absolute;
+  width: 63.4vw;
+  height: 48.385416666666664vw;
+  background: linear-gradient(to left, var(--main-first-color), white);
+  margin-left: auto;
+  margin-right: 0;
+  border-radius: 100% 0 0 0;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+}
+@media (max-width: 750px) {
+  .form {
+    width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+  }
+
+  .title {
+    font-size: 30.43px;
+  }
+  .responsive {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 120px;
+    height: 136px;
+  }
+
+  .inputs {
+    height: 38.01px;
+  }
+
+  .inputs::placeholder {
+    font-size: 18.26px;
+    padding: 1.953125vw;
+  }
+
+  .error1 {
+    font-size: 9.13px;
+    padding-top: 10px;
+    height: 31px;
+  }
+
+  .error2 {
+    font-size: 9.13px;
+    height: 20px;
+  }
+
+  .labelCheck {
+    font-size: 12.17px;
+    height: 25px;
+  }
+
+  .buttons {
+    left: 110px;
+  }
+
+  .principalButton {
+    width: 330px;
+    height: 38.01px;
+    font-size: 24.35px;
+  }
+
+  .forget {
+    font-size: 9.13px;
+  }
+
+  .sideImage {
+    display: none;
+  }
+
+  .sidePage {
+    display: none;
+  }
+}
