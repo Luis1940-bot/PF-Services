@@ -2,6 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+const Country = require("./models/Countries");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
@@ -42,7 +43,42 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User } = sequelize.models;
+const { User,AgeRange, Balance, Banking,Commission, Condition, Contract, Especiality, Post , Professional, Zone, City, Countries } = sequelize.models;
+
+Professional.belongsToMany( Especiality,{ through: "Professional Especiality"});
+Especiality.belongsToMany( Professional, {through: "Professional Especiality"});
+
+Professional.belongsToMany( AgeRange,{ through: "Professional AgeRange"});
+AgeRange.belongsToMany( Professional, {through: "Professional AgeRange"});
+
+Professional.hasMany(Banking);
+Banking.belongsTo(Professional);
+
+Professional.hasMany(Zone, {through: "Professional Zone"});
+Zone.belongsTo(Professional);
+
+Professional.hasMany(Contract);
+Contract.belongsTo(Professional);
+
+User.hasMany(Post);
+Post.belongsTo(User);
+
+Post.hasOne(Zone);
+Zone.belongsTo(Post);
+
+Zone.hasOne(City);
+City.belongsToMany(Zone, {through:"Zone Ccountries"});
+
+Zone.hasOne(Countries);
+Countries.belongsToMany(Zone, {through:"Zone Countries"});
+
+Post.belongsToMany( Condition,{ through: "Post Condition"});
+Condition.belongsToMany( Post, {through: "Post Condition"});
+
+
+
+
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
