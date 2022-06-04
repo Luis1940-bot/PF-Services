@@ -44,37 +44,49 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 //!---se mutea para generar las tablas en la base de datos
-// const { User,AgeRange, Balance, Banking,Commission, Condition, Contract, Especiality, Post , Professional, Zone, City, Countries } = sequelize.models;
+ const { AgeRange, City, Commission,Condition , Contract,Countries,Post,Professional, Specialty, State, Taxe, User } = sequelize.models;
 
-// Professional.belongsToMany( Especiality,{ through: "Professional Especiality"});
-// Especiality.belongsToMany( Professional, {through: "Professional Especiality"});
+Professional.belongsToMany( AgeRange,{ through: "Professional AgeRange"});
+AgeRange.belongsToMany( Professional, {through: "Professional AgeRange"});
 
-// Professional.belongsToMany( AgeRange,{ through: "Professional AgeRange"});
-// AgeRange.belongsToMany( Professional, {through: "Professional AgeRange"});
+Professional.belongsToMany( Specialty, { through: "Professional Specialty"});
+Specialty.belongsToMany( Professional, {through: "Professional Specialty"});
 
-// Professional.hasMany(Banking);
-// Banking.belongsTo(Professional);
+Professional.hasOne(City);
+City.belongsToMany(Professional, {through: "Professional City"});
 
-// Professional.hasMany(Zone, {through: "Professional Zone"});
-// Zone.belongsTo(Professional);
+Professional.hasOne(State);
+State.belongsToMany(Professional, {through: "Professional State"});
 
-// Professional.hasMany(Contract);
-// Contract.belongsTo(Professional);
+Professional.hasOne(Countries);
+Countries.belongsToMany(Professional, {through: "Professional Countries"});
 
-// User.hasMany(Post);
-// Post.belongsTo(User);
+User.hasOne(City);
+City.belongsToMany(User, {through: "User City"});
 
-// Post.hasOne(Zone);
-// Zone.belongsTo(Post);
+User.hasOne(State);
+State.belongsToMany(User, {through: "User State"});
 
-// Zone.hasOne(City);
-// City.belongsToMany(Zone, {through:"Zone Ccountries"});
+User.hasOne(Countries);
+Countries.belongsToMany(User, {through: "User Countries"});
 
-// Zone.hasOne(Countries);
-// Countries.belongsToMany(Zone, {through:"Zone Countries"});
+Post.hasOne(City);
+City.belongsToMany(Post, {through: "Post City"});
 
-// Post.belongsToMany( Condition,{ through: "Post Condition"});
-// Condition.belongsToMany( Post, {through: "Post Condition"});
+Post.hasOne(State);
+State.belongsToMany(Post, {through: "Post State"});
+
+Post.hasOne(Countries);
+Countries.belongsToMany(Post, {through: "Post Countries"});
+
+User.hasMany(Post);
+Post.belongsTo(User);
+
+Post.belongsToMany( Condition,{ through: "Post Condition"});
+Condition.belongsToMany( Post, {through: "Post Condition"});
+
+Professional.hasMany(Contract);
+Contract.belongsTo(Professional);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
