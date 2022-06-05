@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+
 .form {
   margin: 2rem;
   width: 37.5vw;
@@ -8,29 +10,35 @@
 .title {
   font-size: 60px;
   color: var(--main-second-color);
+  font-family: "Nunito", sans-serif;
 }
 
 .inputs {
+  padding-left: 1.8vw;
   height: 4.21875vw;
+  font-size: 2.34375vw;
   border-radius: 40.5px;
+  font-family: "Source Serif Pro", serif;
 }
 
 .inputs::placeholder {
-  font-size: 36px;
-  padding: 30px;
+  font-size: 2.34375vw;
+  font-family: "Source Serif Pro", serif;
 }
 
 .error1 {
   height: 3.7760416666666665vw;
   margin-top: 0px;
-  margin-left: 40px;
+  margin-left: 2vw;
   color: var(--main-second-color);
+  font-family: "Source Serif Pro", serif;
 }
 
 .error2 {
   height: 2.34375vw;
   color: var(--main-second-color);
-  margin-left: 40px;
+  margin-left: 2vw;
+  font-family: "Source Serif Pro", serif;
 }
 
 .labelCheck {
@@ -38,13 +46,14 @@
   padding-bottom: 10px;
   margin-left: 40px;
   color: var(--main-first-color);
+  font-family: "Source Serif Pro", serif;
 }
 
 .buttons {
   border: none;
   background: none;
   position: relative;
-  left: 16vw;
+  left: 16.4vw;
 }
 
 .buttonsImg {
@@ -59,13 +68,13 @@
   background-color: var(--main-first-color);
   border: 0;
   height: 4.21875vw;
-  width: 37.5vw;
   border-radius: 60px;
-
   margin-bottom: 10px;
+  font-family: "Source Serif Pro", serif;
 }
 
 .forget {
+  font-family: "Source Serif Pro", serif;
   border: none;
   background: none;
   color: var(--main-first-color);
@@ -110,41 +119,48 @@
   .responsive {
     display: block;
     position: absolute;
-    bottom: 0;
+    bottom: 0vw;
     left: 120px;
     height: 136px;
   }
 
   .inputs {
     height: 38.01px;
+    padding-left: 16px;
+    font-size: 18.26px;
   }
 
   .inputs::placeholder {
     font-size: 18.26px;
-    padding: 1.953125vw;
   }
 
   .error1 {
     font-size: 9.13px;
     padding-top: 10px;
     height: 31px;
+    padding-left: 15px;
   }
 
   .error2 {
     font-size: 9.13px;
+    padding-top: 10px;
     height: 20px;
+    padding-left: 15px;
   }
 
   .labelCheck {
     font-size: 12.17px;
     height: 25px;
+    margin-left: 18px;
   }
 
   .buttons {
-    left: 110px;
+    left: 103px;
   }
 
   .principalButton {
+    margin-top: 10px;
+
     width: 330px;
     height: 38.01px;
     font-size: 24.35px;

@@ -1,17 +1,15 @@
 import React from "react";
 import "./Login.css";
-import Navbar from "../Navbar/Navbar";
+
 import image from "./helpImages/SideImage.png";
 import google from "./helpImages/google.png";
 import facebook from "./helpImages/facebook.png";
 import responsive from "./helpImages/responsive.png";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
     <>
-      <Navbar />
-
       <form className="form">
         <h1 className="title">Login</h1>
         <input
@@ -22,11 +20,12 @@ const Login = () => {
         <span className="error1">
           Please enter your user name or email again.
         </span>
-        <input className="inputs" type="text" placeholder="Password" />
+        <input className="inputs" type="password" placeholder="Password" />
         <span className="error2">Incorrect password, please try again.</span>
         <div>
-          <label class="labelCheck">
-            <input type="checkbox" checked="checked" />
+          <label className="labelCheck">
+            <input className="box" type="checkbox" />
+            <span className="checkmark"></span>
             Remember me.
           </label>
         </div>
