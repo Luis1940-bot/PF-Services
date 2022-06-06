@@ -47,6 +47,7 @@ module.exports = (sequelize) => {
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
+      defaultValue: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -75,10 +76,17 @@ module.exports = (sequelize) => {
     verified_user: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
+      defaultValue: false,
     },
     balance: {
       type: DataTypes.FLOAT,
       allowNull: true,
+      defaultValue: 0,
+    },
+    validated_email: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
     },
   });
 };
