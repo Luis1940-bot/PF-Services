@@ -10,7 +10,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 //   `postgres://postgres:admin@localhost:5432/food`,
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`,
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -56,49 +56,49 @@ sequelize.models = Object.fromEntries(capsEntries);
 // });
 
 //!---se mutea para generar las tablas en la base de datos
-//const { Ageranges, Cities, Commissions,Conditions , Contracts,Countries,Posts,Professionals, Specialties, States, Taxes, Users } = sequelize.models;
+const { Ageranges, Cities, Commissions,Conditions , Contracts,Countries,Posts,Professionals, Specialties, States, Taxes, Users } = sequelize.models;
 
-//Professionals.belongsToMany( Ageranges,{ through: "Professionals Ageranges"});
-//Ageranges.belongsToMany( Professionals, {through: "Professionals Ageranges"});
+Professionals.belongsToMany( Ageranges,{ through: "Professionals Ageranges"});
+Ageranges.belongsToMany( Professionals, {through: "Professionals Ageranges"});
 
-//Professionals.belongsToMany( Specialties, { through: "Professionals Specialties"});
-//Specialties.belongsToMany( Professionals, {through: "Professionals Specialties"});
+Professionals.belongsToMany( Specialties, { through: "Professionals Specialties"});
+Specialties.belongsToMany( Professionals, {through: "Professionals Specialties"});
 
-//Professionals.hasOne(Cities);
-//Cities.belongsToMany(Professionals, {through: "Professionals Cities"});
+Professionals.hasOne(Cities);
+Cities.belongsToMany(Professionals, {through: "Professionals Cities"});
 
-//Professionals.hasOne(States);
-//States.belongsToMany(Professionals, {through: "Professionals States"});
+Professionals.hasOne(States);
+States.belongsToMany(Professionals, {through: "Professionals States"});
 
-//Professionals.hasOne(Countries);
-//Countries.belongsToMany(Professionals, {through: "Professionals Countries"});
+Professionals.hasOne(Countries);
+Countries.belongsToMany(Professionals, {through: "Professionals Countries"});
 
-//Users.hasOne(Cities);
-//Cities.belongsToMany(Users, {through: "Users Cities"});
+Users.hasOne(Cities);
+Cities.belongsToMany(Users, {through: "Users Cities"});
 
-//Users.hasOne(States);
-//States.belongsToMany(Users, {through: "Users States"});
+Users.hasOne(States);
+States.belongsToMany(Users, {through: "Users States"});
 
-//Users.hasOne(Countries);
-//Countries.belongsToMany(Users, {through: "Users Countries"});
+Users.hasOne(Countries);
+Countries.belongsToMany(Users, {through: "Users Countries"});
 
-//Posts.hasOne(Cities);
-//Cities.belongsToMany(Posts, {through: "Posts Cities"});
+Posts.hasOne(Cities);
+Cities.belongsToMany(Posts, {through: "Posts Cities"});
 
-//Posts.hasOne(States);
-//States.belongsToMany(Posts, {through: "Posts States"});
+Posts.hasOne(States);
+States.belongsToMany(Posts, {through: "Posts States"});
 
-//Posts.hasOne(Countries);
-//Countries.belongsToMany(Posts, {through: "Posts Countries"});
+Posts.hasOne(Countries);
+Countries.belongsToMany(Posts, {through: "Posts Countries"});
 
-//Users.hasMany(Posts);
-//Posts.belongsTo(Users);
+Users.hasMany(Posts);
+Posts.belongsTo(Users);
 
-//Posts.belongsToMany( Conditions,{ through: "Posts Conditions"});
-//Conditions.belongsToMany( Posts, {through: "Post Conditions"});
+Posts.belongsToMany( Conditions,{ through: "Posts Conditions"});
+Conditions.belongsToMany( Posts, {through: "Post Conditions"});
 
-//Professionals.hasMany(Contracts);
-//Contracts.belongsTo(Professionals);
+Professionals.hasMany(Contracts);
+Contracts.belongsTo(Professionals);
 //>>>>>>> back_end
 
 module.exports = {
