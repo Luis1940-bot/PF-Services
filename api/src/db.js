@@ -10,7 +10,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 //   `postgres://postgres:admin@localhost:5432/food`,
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -54,9 +54,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Diet.belongsToMany(Recipe, {
 //   through: "recipeDiet",
 // });
-=======
+
 //!---se mutea para generar las tablas en la base de datos
- //const { Ageranges, Cities, Commissions,Conditions , Contracts,Countries,Posts,Professionals, Specialties, States, Taxes, Users } = sequelize.models;
+//const { Ageranges, Cities, Commissions,Conditions , Contracts,Countries,Posts,Professionals, Specialties, States, Taxes, Users } = sequelize.models;
 
 //Professionals.belongsToMany( Ageranges,{ through: "Professionals Ageranges"});
 //Ageranges.belongsToMany( Professionals, {through: "Professionals Ageranges"});

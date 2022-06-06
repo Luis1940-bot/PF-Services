@@ -6,6 +6,7 @@ const { userValidationRules, validate } = require("../middleware/validator.js");
 
 //----
 const db = require("../db.js");
+
 //----
 console.log("ENTRO A userdbregistration.js");
 
@@ -18,7 +19,7 @@ router.post(
     const userData = req.body;
     // const userData = {name: "danimir",username: "danimir",surname: "lorko",password: "123456",phone: "1163003314",address: "Holmberg 3435",age: 44,document: "26116568",active: true,email: "dlorko@gmail.com",phone2: "1122334455",};
     //----fin puente
-    const userFound = await db.User.findOne({
+    const userFound = await db.Users.findOne({
       where: {
         username: userData.username,
       },
@@ -36,7 +37,7 @@ router.post(
         });
       }
       userData.password = hash;
-      await db.User.create(userData);
+      await db.Users.create(userData);
       res.status(200).json({ message: "User created" });
     });
   }

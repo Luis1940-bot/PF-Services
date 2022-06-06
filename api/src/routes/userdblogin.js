@@ -115,7 +115,7 @@ router.get("/userdblogin", async (req, res) => {
   console.log("Where? -->>", req.url);
   const { username, password } = req.body;
   if (username && password) {
-    const userFound = await db.User.findOne({
+    const userFound = await db.Users.findOne({
       where: {
         username,
       },
