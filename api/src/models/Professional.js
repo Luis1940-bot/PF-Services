@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("professional", {
+  sequelize.define("professionals", {
     name: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -74,6 +74,10 @@ module.exports = (sequelize) => {
     },
     verified_user: {
       type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    balance: {
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
   });
