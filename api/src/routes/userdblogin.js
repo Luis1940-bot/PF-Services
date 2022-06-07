@@ -22,102 +22,13 @@ router.use(
 console.log("ENTRO A userdblogin.js");
 // const CLIENT_URL = "http://localhost:3000/";
 
-// router.get("/login/success", (req, res) => {
-//   if (req.user) {
-//     res.status(200).json({
-//       success: true,
-//       message: "successfull",
-//       user: req.user,
-//       //   cookies: req.cookies
-//     });
-//   }
-// });
-
-// router.get("/login/failed", (req, res) => {
-//   res.status(401).json({
-//     success: false,
-//     message: "failure",
-//   });
-// });
-
-// router.get("/logout", (req, res) => {
-//   req.logout();
-//   res.redirect(CLIENT_URL);
-// });
-
-// router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
-
-// router.get(
-//   "/google/callback",
-//   passport.authenticate("google", {
-//     successRedirect: CLIENT_URL,
-//     failureRedirect: "/login/failed",
-//   })
-// );
-
-// router.get("/github", passport.authenticate("github", { scope: ["profile"] }));
-
-// router.get(
-//   "/github/callback",
-//   passport.authenticate("github", {
-//     successRedirect: CLIENT_URL,
-//     failureRedirect: "/login/failed",
-//   })
-// );
-
-// router.get(
-//   "/facebook",
-//   passport.authenticate("facebook", { scope: ["profile"] })
-// );
-
-// router.get(
-//   "/facebook/callback",
-//   passport.authenticate("facebook", {
-//     successRedirect: CLIENT_URL,
-//     failureRedirect: "/login/failed",
-//   })
-// );
-
-//---------------------------------------------
-
-// router.get("/auth", async (req, res) => {
-//   //npm install bcrypt
-//   // const { username, password, role, email } = req.body;
-//   // console.log(req.body);
-//   console.log("Where? -->> api/userlogin");
-//   const falseUser = {
-//     name: "dani",
-//     username: "danimir",
-//     surname: "lorko",
-//     password: "123456",
-//     phone: "1163003314",
-//     address: "Holmberg 3435",
-//     age: 44,
-//     document: "26116568",
-//     active: true,
-//     email: "dlorko@gmail.com",
-//     phone2: "1122334455",
-//   };
-//   bcrypt.hash(falseUser.password, 10, async (err, hash) => {
-//     if (err) {
-//       return res.status(500).json({
-//         error: err,
-//       });
-//     }
-//     falseUser.password = hash;
-//     const user = await db.User.create(falseUser);
-//     console.log("user", user);
-//     res.status(200).json({ message: "User created" });
-//   });
-// });
-
 router.get("/userdblogin", async (req, res) => {
   console.log("Where? -->>", req.url);
-  const { username, password } = req.body;
-  if (username && password) {
+  const { email, password } = req.body;
+  if (email && password) {
     const userFound = await db.Users.findOne({
       where: {
-        username,
+        email,
       },
       raw: true,
     });
@@ -136,7 +47,7 @@ router.get("/userdblogin", async (req, res) => {
         return res.status(401).json({ error: "Wrong password" });
       } else {
         const accesstoken = jwt.sign(
-          { id: userFound.id, username: userFound.username },
+          { id: userFound.id, email: userFound.email },
           process.env.TOKENKEY
         );
         res.cookie("userBackend", accesstoken, {
@@ -145,7 +56,7 @@ router.get("/userdblogin", async (req, res) => {
         });
         res.status(200).json({
           message: "Login success",
-          username: userFound.username,
+          email: userFound.email,
           token: accesstoken,
         });
       }

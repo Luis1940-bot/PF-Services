@@ -4,6 +4,9 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("posts", {
+    id_user: {
+      type: DataTypes.INTEGER,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -28,12 +31,13 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
-    condition: {
+
+    locationReference: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    locationReference: {
-      type: DataTypes.TEXT,
+    contact_phone: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
   });

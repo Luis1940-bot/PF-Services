@@ -12,10 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+
     password: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -61,11 +58,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    verified_user: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: false,
-    },
+
     validated_email: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
