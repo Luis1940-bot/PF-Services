@@ -4,9 +4,6 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("posts", {
-    id_user: {
-      type: DataTypes.INTEGER,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: true,

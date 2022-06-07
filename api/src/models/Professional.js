@@ -4,7 +4,10 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("professionals", {
-    tution: {
+    id_user: {
+      type: DataTypes.INTEGER,
+    },
+    tuition: {
       type: DataTypes.STRING,
       allowNull: true,
     },
