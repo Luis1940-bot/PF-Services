@@ -6,16 +6,8 @@ import Navbar from "./components/Navbar/Navbar.js";
 
 function App() {
   return (
-    <div>
-//=======
-import { Route } from 'react-router-dom';
-import Navbar from "../src/components/Navbar/Navbar"
-import Landingpage from "./components/Landingpage/Landingpage.js"
+        <div >
 
-function App() {
-  return (
-    <div >
-//>>>>>>> front_end
       <Navbar />
       <Route exact path="/" component={Landingpage} />
       <Route exact path="/login" component={Login} />
