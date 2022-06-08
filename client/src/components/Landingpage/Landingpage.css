@@ -1,0 +1,23 @@
+.containerHome{
+    width: 100%;
+    scroll-snap-type:  y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+.section {
+    height: 79vh;
+    scroll-snap-align: start;
+    padding: 100px;
+}
+#about{
+    background-color: rgb(255, 196, 1);
+}
+#service{
+    background-color: rgb(25, 0, 255);
+}
+#testimonio{
+    background-color: rgb(0, 110, 18);
+}
+#contact{
+    background-color: rgb(255, 0, 0);
+}
