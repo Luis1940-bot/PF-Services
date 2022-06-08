@@ -30,7 +30,7 @@ router.post(
       age,
       document,
       phone2,
-      states
+      states,
     } = req.body;
 
     //----fin puente
@@ -53,7 +53,7 @@ router.post(
       }
       password = hash;
 
-     const userCreated= await db.Users.create({
+      const userCreated = await db.Users.create({
         email: email,
         password: password,
         name: name,
@@ -64,7 +64,7 @@ router.post(
         document: document,
         phone2: phone2,
       });
-      console.log(userCreated)
+
       /* const countrySearched = await Countries.findAll({
         where: {
           name:country,
@@ -76,15 +76,15 @@ router.post(
           name:city,
         },
       }); */
-      
-      const stateSearched = await db.States.findAll({
-        where: {
-          name:states,
-        },
-      });
-      console.log(stateSearched)
 
-      await userCreated.addStates(stateSearched);
+      // const stateSearched = await db.States.findAll({
+      //   where: {
+      //     name: states,
+      //   },
+      //   raw: true,
+      // });
+
+      // await userCreated.addStates(stateSearched[0]);
       /* userCreated.addCountries(countrySearched);
       userCreated.addCities(citySearched); */
 
