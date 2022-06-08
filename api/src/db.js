@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const Country = require("./models/Countries");
+
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
@@ -57,56 +57,56 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 //!---se mutea para generar las tablas en la base de datos
 const {
-  Ageranges,
+  AgeRange,
   Cities,
   Commissions,
   Conditions,
   Contracts,
   Countries,
   Posts,
-  Professionals,
+  Professional,
   Specialties,
   States,
   Taxes,
   Users,
 } = sequelize.models;
 
-Professionals.belongsToMany(Ageranges, { through: "Professionals Ageranges" });
-Ageranges.belongsToMany(Professionals, { through: "Professionals Ageranges" });
+Professional.belongsToMany(AgeRange, { through: "ProfessionalsAgeranges" });
+AgeRange.belongsToMany(Professional, { through: "ProfessionalsAgeranges" });
 
-Professionals.belongsToMany(Specialties, {
-  through: "Professionals Specialties",
+Professional.belongsToMany(Specialties, {
+  through: "ProfessionalsSpecialties",
 });
-Specialties.belongsToMany(Professionals, {
-  through: "Professionals Specialties",
+Specialties.belongsToMany(Professional, {
+  through: "ProfessionalsSpecialties",
 });
 
 Users.hasOne(Cities);
-Cities.belongsToMany(Users, { through: "Users Cities" });
+Cities.belongsToMany(Users, { through: "UsersCities" });
 
-Users.hasOne(States);
-States.belongsToMany(Users, { through: "Users States" });
+Users.hasOne(States, { through: "UsersStates" });
+States.belongsToMany(Users, { through: "UsersStates" });
 
 Users.hasOne(Countries);
-Countries.belongsToMany(Users, { through: "Users Countries" });
+Countries.belongsToMany(Users, { through: "UsersCountries" });
 
 Posts.hasOne(Cities);
-Cities.belongsToMany(Posts, { through: "Posts Cities" });
+Cities.belongsToMany(Posts, { through: "PostsCities" });
 
 Posts.hasOne(States);
-States.belongsToMany(Posts, { through: "Posts States" });
+States.belongsToMany(Posts, { through: "PostsStates" });
 
 Posts.hasOne(Countries);
-Countries.belongsToMany(Posts, { through: "Posts Countries" });
+Countries.belongsToMany(Posts, { through: "PostsCountries" });
 
 Users.hasMany(Posts);
 Posts.belongsTo(Users);
 
-Posts.belongsToMany(Conditions, { through: "Posts Conditions" });
-Conditions.belongsToMany(Posts, { through: "Post Conditions" });
+Posts.belongsToMany(Conditions, { through: "PostsConditions" });
+Conditions.belongsToMany(Posts, { through: "PostConditions" });
 
-Professionals.hasMany(Contracts);
-Contracts.belongsTo(Professionals);
+Professional.hasMany(Contracts);
+Contracts.belongsTo(Professional);
 //>>>>>>> back_end
 
 module.exports = {

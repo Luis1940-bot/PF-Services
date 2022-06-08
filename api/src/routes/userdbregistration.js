@@ -16,7 +16,7 @@ console.log("ENTRO A userdbregistration.js");
 
 router.post(
   "/userdbRegistration",
-  userValidShortReg(),
+
   validate,
   async (req, res) => {
     console.log("Where? -->>", req.url);
@@ -30,6 +30,7 @@ router.post(
       age,
       document,
       phone2,
+      states
     } = req.body;
 
     //----fin puente
@@ -52,7 +53,7 @@ router.post(
       }
       password = hash;
 
-      await db.Users.create({
+     const userCreated= await db.Users.create({
         email: email,
         password: password,
         name: name,
@@ -63,6 +64,30 @@ router.post(
         document: document,
         phone2: phone2,
       });
+      console.log(userCreated)
+      /* const countrySearched = await Countries.findAll({
+        where: {
+          name:country,
+        },
+      });
+
+      const citySearched = await Cities.findAll({
+        where: {
+          name:city,
+        },
+      }); */
+      
+      const stateSearched = await db.States.findAll({
+        where: {
+          name:states,
+        },
+      });
+      console.log(stateSearched)
+
+      await userCreated.addStates(stateSearched);
+      /* userCreated.addCountries(countrySearched);
+      userCreated.addCities(citySearched); */
+
       res.status(201).json({ message: "User created" });
     });
   }

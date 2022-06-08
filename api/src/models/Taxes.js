@@ -3,38 +3,22 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("Professionals", {
-    id_user: {
-      type: DataTypes.INTEGER,
-    },
-    tuition: {
+  sequelize.define("Taxes", {
+    taxDescription: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-
-    trainings: {
-      type: DataTypes.TEXT,
+    tax: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
-      defaultValue: true,
     },
-
-    photo: {
-      type: DataTypes.STRING,
+    date: {
+      type: DataTypes.DATE,
       allowNull: true,
-    },
-    cvu: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-
-    balance: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      defaultValue: 0,
     },
   });
 };
