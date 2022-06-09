@@ -3,6 +3,7 @@ const express = require("express");
 const db = require("../db");
 const passport = require("../passport/passport.js");
 const bcrypt = require("bcrypt");
+const { sendEmailToValidate } = require("../nodemailer/nodemailer.js");
 //https://www.npmjs.com/package/validator
 const {
   userValidationRules,
@@ -16,8 +17,8 @@ router.use(cors());
 
 router.post(
   "/userdbRegistration",
-
-  // validate,
+  userValidationRules(),
+  validate,
   async (req, res) => {
     console.log("Where? -->>", req.url);
     try {
@@ -67,9 +68,14 @@ router.post(
         },
       });
       let mensaje = {};
-      created
-        ? (mensaje = { message: "User created" })
-        : (mensaje = { message: "User existent" });
+
+      if (created) {
+        mensaje = { message: "User created" };
+        const { id, email, name, surname } = user;
+        sendEmailToValidate(email, id, name, surname);
+      } else {
+        mensaje = { message: "User existent" };
+      }
 
       res.status(201).json(mensaje);
     } catch (e) {
