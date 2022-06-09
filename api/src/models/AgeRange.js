@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("Ageranges", {
+  sequelize.define("AgeRanges", {
     minor_range: {
       type: DataTypes.INTEGER,
       allowNull: true,
