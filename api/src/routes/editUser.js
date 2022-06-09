@@ -13,6 +13,10 @@ router.put("/edituser", async (req, res) => {
     age,
     document,
     phone2,
+    state,
+    country,
+    city
+    
   } = req.body;
   const userFinded = await db.Users.findOne({
     where: { email: email },
@@ -29,6 +33,9 @@ router.put("/edituser", async (req, res) => {
         age: age,
         document: document,
         phone2: phone2,
+        state:state,
+        country:country,
+        city:city
       });
     }
     res.status(200).send("Se modificaron los datos correctamente");
