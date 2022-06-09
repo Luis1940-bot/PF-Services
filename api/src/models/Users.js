@@ -64,5 +64,17 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: false,
     },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 };

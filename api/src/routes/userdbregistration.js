@@ -30,7 +30,9 @@ router.post(
       age,
       document,
       phone2,
-      states,
+      state,
+      country,
+      city
     } = req.body;
 
     //----fin puente
@@ -63,6 +65,9 @@ router.post(
         age: age,
         document: document,
         phone2: phone2,
+        state:state,
+        country:country,
+        city:city
       });
 
       /* const countrySearched = await Countries.findAll({
