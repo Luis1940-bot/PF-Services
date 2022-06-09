@@ -71,6 +71,28 @@ const {
   Users,
 } = sequelize.models;
 
+//<<<<<<< DNL_0608_2daMailyModelos
+// Professional.belongsToMany(AgeRange, { through: "ProfessionalsAgeranges" });
+// AgeRange.belongsToMany(Professional, { through: "ProfessionalsAgeranges" });
+
+// Professional.belongsToMany(Specialties, {
+//   through: "ProfessionalsSpecialties",
+// });
+// Specialties.belongsToMany(Professional, {
+//   through: "ProfessionalsSpecialties",
+// });
+
+// Users.hasOne(Cities);
+// Cities.belongsToMany(Users, { through: "UsersCities" });
+
+//1 User tiene un ESTADO. Y un ESTADO tiene muchos USUARIOS
+// Users.hasOne(States, { through: "UsersStates" });
+// States.belongsToMany(Users, { through: "UsersStates" });
+
+//DANIMIR -->> Añade clave StateID a la tabla Users
+States.hasMany(Users);
+Users.belongsTo(States);
+//=======
 // Professionals.belongsToMany(AgeRanges, { through: "ProfessionalsAgeranges" });
 // AgeRanges.belongsToMany(Professionals, { through: "ProfessionalsAgeranges" });
 
@@ -86,6 +108,7 @@ const {
 
 // Users.belongsToMany(States, { through: "UsersStates" });
 // States.belongsToMany(Users, { through: "UsersStates" });
+//>>>>>>> back_end
 
 // Users.hasOne(Countries);
 // Countries.belongsToMany(Users, { through: "UsersCountries" });
@@ -105,8 +128,13 @@ const {
 // Posts.belongsToMany(Conditions, { through: "PostsConditions" });
 // Conditions.belongsToMany(Posts, { through: "PostConditions" });
 
+//<<<<<<< DNL_0608_2daMailyModelos
+// Professional.hasMany(Contracts);
+// Contracts.belongsTo(Professional);
+//=======
 // Professionals.hasMany(Contracts);
 // Contracts.belongsTo(Professionals);
+//>>>>>>> back_end
 //>>>>>>> back_end
 
 module.exports = {

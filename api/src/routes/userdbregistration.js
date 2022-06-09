@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const passport = require("../passport/passport.js");
 const bcrypt = require("bcrypt");
+const { sendEmailToValidate } = require("../nodemailer/nodemailer.js");
 //https://www.npmjs.com/package/validator
 const {
   userValidationRules,
@@ -10,6 +11,7 @@ const {
 
 //----
 const db = require("../db.js");
+const { raw } = require("body-parser");
 
 //----
 console.log("ENTRO A userdbregistration.js");
@@ -53,6 +55,39 @@ router.post(
       }
       password = hash;
 
+//<<<<<<< DNL_0608_2daMailyModelos
+      await db.States.findOne({
+        where: { name: states },
+        raw: true,
+      }).then((State) => {
+        // console.log("idState", State);
+        db.Users.create({
+          email: email,
+          password: password,
+          name: name,
+          surname: surname,
+          phone: phone,
+          address: address,
+          age: age,
+          document: document,
+          phone2: phone2,
+          StateId: State.id,
+        }).then((user) => {
+          const { id, email, name, surname } = user;
+          console.log(email, id, name, surname);
+          sendEmailToValidate(email, id, name, surname);
+          res.status(200).json({
+            message: "User created",
+          });
+        });
+      });
+    });
+  }
+);
+
+// console.log(userCreated);
+/* const countrySearched = await Countries.findAll({
+//=======
       const userCreated = await db.Users.create({
         email: email,
         password: password,
@@ -66,6 +101,7 @@ router.post(
       });
 
       /* const countrySearched = await Countries.findAll({
+//>>>>>>> back_end
         where: {
           name:country,
         },
@@ -77,6 +113,14 @@ router.post(
         },
       }); */
 
+//<<<<<<< DNL_0608_2daMailyModelos
+// const stateSearched = await db.States.findAll({
+//   where: {
+//     name:states,
+//   },
+// });
+// console.log(stateSearched)
+//=======
       // const stateSearched = await db.States.findAll({
       //   where: {
       //     name: states,
@@ -87,10 +131,10 @@ router.post(
       // await userCreated.addStates(stateSearched[0]);
       /* userCreated.addCountries(countrySearched);
       userCreated.addCities(citySearched); */
+//>>>>>>> back_end
 
-      res.status(201).json({ message: "User created" });
-    });
-  }
-);
+// await userCreated.addStates(stateSearched);
+/* userCreated.addCountries(countrySearched);
+      userCreated.addCities(citySearched); */
 
 module.exports = router;
