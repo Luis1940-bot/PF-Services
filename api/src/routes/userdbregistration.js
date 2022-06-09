@@ -18,7 +18,7 @@ console.log("ENTRO A userdbregistration.js");
 
 router.post(
   "/userdbRegistration",
-
+  userValidationRules(),
   validate,
   async (req, res) => {
     console.log("Where? -->>", req.url);
@@ -34,8 +34,6 @@ router.post(
       phone2,
       states,
     } = req.body;
-
-    //----fin puente
     const userFound = await db.Users.findOne({
       where: {
         email: email,
@@ -54,33 +52,41 @@ router.post(
         });
       }
       password = hash;
-
-//<<<<<<< DNL_0608_2daMailyModelos
       await db.States.findOne({
         where: { name: states },
         raw: true,
-      }).then((State) => {
-        // console.log("idState", State);
-        db.Users.create({
-          email: email,
-          password: password,
-          name: name,
-          surname: surname,
-          phone: phone,
-          address: address,
-          age: age,
-          document: document,
-          phone2: phone2,
-          StateId: State.id,
-        }).then((user) => {
-          const { id, email, name, surname } = user;
-          console.log(email, id, name, surname);
-          sendEmailToValidate(email, id, name, surname);
-          res.status(200).json({
-            message: "User created",
+      })
+        .then((State) => {
+          if (State) {
+            db.Users.create({
+              email: email,
+              password: password,
+              name: name,
+              surname: surname,
+              phone: phone,
+              address: address,
+              age: age,
+              document: document,
+              phone2: phone2,
+              StateId: State.id,
+            }).then((user) => {
+              const { id, email, name, surname } = user;
+              sendEmailToValidate(email, id, name, surname);
+              res.status(200).json({
+                message: "User created",
+              });
+            });
+          } else {
+            res.status(404).json({
+              error: "State not found",
+            });
+          }
+        })
+        .catch((err) => {
+          res.status(404).json({
+            error: err,
           });
         });
-      });
     });
   }
 );
@@ -121,15 +127,15 @@ router.post(
 // });
 // console.log(stateSearched)
 //=======
-      // const stateSearched = await db.States.findAll({
-      //   where: {
-      //     name: states,
-      //   },
-      //   raw: true,
-      // });
+// const stateSearched = await db.States.findAll({
+//   where: {
+//     name: states,
+//   },
+//   raw: true,
+// });
 
-      // await userCreated.addStates(stateSearched[0]);
-      /* userCreated.addCountries(countrySearched);
+// await userCreated.addStates(stateSearched[0]);
+/* userCreated.addCountries(countrySearched);
       userCreated.addCities(citySearched); */
 //>>>>>>> back_end
 

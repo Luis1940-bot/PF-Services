@@ -10,6 +10,7 @@ const userAllData = require("./userAllData");
 const profAllData = require("./profAllData");
 const statesRoute = require("./statesRoute");
 const userValidationProcess = require("./userValidationProcess");
+const userResendValidationEmail = require("./userResendValidationEmail");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -21,5 +22,6 @@ router.use("/", userAllData);
 router.use("/", profAllData);
 router.use("/", statesRoute);
 router.use("/", userValidationProcess);
+router.use("/", userResendValidationEmail);
 
 module.exports = router;
