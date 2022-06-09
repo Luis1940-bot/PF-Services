@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const passport = require("../passport/passport.js");
 const bcrypt = require("bcrypt");
+const { sendEmailToValidate } = require("../nodemailer/nodemailer.js");
 //https://www.npmjs.com/package/validator
 const {
   userValidationRules,
@@ -10,6 +11,7 @@ const {
 
 //----
 const db = require("../db.js");
+const { raw } = require("body-parser");
 
 //----
 console.log("ENTRO A userdbregistration.js");
@@ -30,7 +32,7 @@ router.post(
       age,
       document,
       phone2,
-      states
+      states,
     } = req.body;
 
     //----fin puente
@@ -53,19 +55,37 @@ router.post(
       }
       password = hash;
 
-     const userCreated= await db.Users.create({
-        email: email,
-        password: password,
-        name: name,
-        surname: surname,
-        phone: phone,
-        address: address,
-        age: age,
-        document: document,
-        phone2: phone2,
+      await db.States.findOne({
+        where: { name: states },
+        raw: true,
+      }).then((State) => {
+        // console.log("idState", State);
+        db.Users.create({
+          email: email,
+          password: password,
+          name: name,
+          surname: surname,
+          phone: phone,
+          address: address,
+          age: age,
+          document: document,
+          phone2: phone2,
+          StateId: State.id,
+        }).then((user) => {
+          const { id, email, name, surname } = user;
+          console.log(email, id, name, surname);
+          sendEmailToValidate(email, id, name, surname);
+          res.status(200).json({
+            message: "User created",
+          });
+        });
       });
-      console.log(userCreated)
-      /* const countrySearched = await Countries.findAll({
+    });
+  }
+);
+
+// console.log(userCreated);
+/* const countrySearched = await Countries.findAll({
         where: {
           name:country,
         },
@@ -76,21 +96,16 @@ router.post(
           name:city,
         },
       }); */
-      
-      const stateSearched = await db.States.findAll({
-        where: {
-          name:states,
-        },
-      });
-      console.log(stateSearched)
 
-      await userCreated.addStates(stateSearched);
-      /* userCreated.addCountries(countrySearched);
+// const stateSearched = await db.States.findAll({
+//   where: {
+//     name:states,
+//   },
+// });
+// console.log(stateSearched)
+
+// await userCreated.addStates(stateSearched);
+/* userCreated.addCountries(countrySearched);
       userCreated.addCities(citySearched); */
-
-      res.status(201).json({ message: "User created" });
-    });
-  }
-);
 
 module.exports = router;

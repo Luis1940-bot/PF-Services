@@ -71,42 +71,47 @@ const {
   Users,
 } = sequelize.models;
 
-Professional.belongsToMany(AgeRange, { through: "ProfessionalsAgeranges" });
-AgeRange.belongsToMany(Professional, { through: "ProfessionalsAgeranges" });
+// Professional.belongsToMany(AgeRange, { through: "ProfessionalsAgeranges" });
+// AgeRange.belongsToMany(Professional, { through: "ProfessionalsAgeranges" });
 
-Professional.belongsToMany(Specialties, {
-  through: "ProfessionalsSpecialties",
-});
-Specialties.belongsToMany(Professional, {
-  through: "ProfessionalsSpecialties",
-});
+// Professional.belongsToMany(Specialties, {
+//   through: "ProfessionalsSpecialties",
+// });
+// Specialties.belongsToMany(Professional, {
+//   through: "ProfessionalsSpecialties",
+// });
 
-Users.hasOne(Cities);
-Cities.belongsToMany(Users, { through: "UsersCities" });
+// Users.hasOne(Cities);
+// Cities.belongsToMany(Users, { through: "UsersCities" });
 
-Users.hasOne(States, { through: "UsersStates" });
-States.belongsToMany(Users, { through: "UsersStates" });
+//1 User tiene un ESTADO. Y un ESTADO tiene muchos USUARIOS
+// Users.hasOne(States, { through: "UsersStates" });
+// States.belongsToMany(Users, { through: "UsersStates" });
 
-Users.hasOne(Countries);
-Countries.belongsToMany(Users, { through: "UsersCountries" });
+//DANIMIR -->> Añade clave StateID a la tabla Users
+States.hasMany(Users);
+Users.belongsTo(States);
 
-Posts.hasOne(Cities);
-Cities.belongsToMany(Posts, { through: "PostsCities" });
+// Users.hasOne(Countries);
+// Countries.belongsToMany(Users, { through: "UsersCountries" });
 
-Posts.hasOne(States);
-States.belongsToMany(Posts, { through: "PostsStates" });
+// Posts.hasOne(Cities);
+// Cities.belongsToMany(Posts, { through: "PostsCities" });
 
-Posts.hasOne(Countries);
-Countries.belongsToMany(Posts, { through: "PostsCountries" });
+// Posts.hasOne(States);
+// States.belongsToMany(Posts, { through: "PostsStates" });
 
-Users.hasMany(Posts);
-Posts.belongsTo(Users);
+// Posts.hasOne(Countries);
+// Countries.belongsToMany(Posts, { through: "PostsCountries" });
 
-Posts.belongsToMany(Conditions, { through: "PostsConditions" });
-Conditions.belongsToMany(Posts, { through: "PostConditions" });
+// Users.hasMany(Posts);
+// Posts.belongsTo(Users);
 
-Professional.hasMany(Contracts);
-Contracts.belongsTo(Professional);
+// Posts.belongsToMany(Conditions, { through: "PostsConditions" });
+// Conditions.belongsToMany(Posts, { through: "PostConditions" });
+
+// Professional.hasMany(Contracts);
+// Contracts.belongsTo(Professional);
 //>>>>>>> back_end
 
 module.exports = {
