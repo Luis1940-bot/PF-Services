@@ -1,4 +1,6 @@
-const router = require("express").Router();
+const { Router } = require("express");
+const express = require("express");
+const db = require("../db");
 const passport = require("../passport/passport.js");
 const bcrypt = require("bcrypt");
 //https://www.npmjs.com/package/validator
@@ -7,89 +9,72 @@ const {
   userValidShortReg,
   validate,
 } = require("../middleware/validator.js");
-
-//----
-const db = require("../db.js");
-
-//----
-console.log("ENTRO A userdbregistration.js");
+const router = Router();
+router.use(express.json());
+const cors = require("cors");
+router.use(cors());
 
 router.post(
   "/userdbRegistration",
 
-  validate,
+  // validate,
   async (req, res) => {
     console.log("Where? -->>", req.url);
-    let {
-      email,
-      password,
-      name,
-      surname,
-      phone,
-      address,
-      age,
-      document,
-      phone2,
-      states,
-    } = req.body;
+    try {
+      const {
+        email,
+        password,
+        name,
+        surname,
+        phone,
+        address,
+        age,
+        document,
+        phone2,
+        state,
+        city,
+        country,
+      } = req.body;
 
-    //----fin puente
-    const userFound = await db.Users.findOne({
-      where: {
-        email: email,
-      },
-      raw: true,
-    });
-    if (userFound) {
-      return res.status(401).json({
-        error: "email already exists",
+      const hash = bcrypt.hashSync(password, 10);
+      const [userCreated, created] = await db.Users.findOrCreate({
+        where: { email: email },
+        defaults: {
+          email: email,
+          password: hash,
+          name: name,
+          surname: surname,
+          phone: phone,
+          address: address,
+          age: age,
+          document: document,
+          phone2: phone2,
+          stateId: state
+            ? (
+                await db.States.findOne({ where: { name: state } })
+              )?.id
+            : null,
+          cityId: city
+            ? (
+                await db.Cities.findOne({ where: { name: city } })
+              )?.id
+            : null,
+          countryId: country
+            ? (
+                await db.Cities.findOne({ where: { name: country } })
+              )?.id
+            : null,
+        },
       });
+      let mensaje = {};
+      created
+        ? (mensaje = { message: "User created" })
+        : (mensaje = { message: "User existent" });
+
+      res.status(201).json(mensaje);
+    } catch (e) {
+      res.send(e);
     }
-    bcrypt.hash(password, 10, async (err, hash) => {
-      if (err) {
-        return res.status(500).json({
-          error: err,
-        });
-      }
-      password = hash;
-
-      const userCreated = await db.Users.create({
-        email: email,
-        password: password,
-        name: name,
-        surname: surname,
-        phone: phone,
-        address: address,
-        age: age,
-        document: document,
-        phone2: phone2,
-      });
-
-      /* const countrySearched = await Countries.findAll({
-        where: {
-          name:country,
-        },
-      });
-
-      const citySearched = await Cities.findAll({
-        where: {
-          name:city,
-        },
-      }); */
-
-      // const stateSearched = await db.States.findAll({
-      //   where: {
-      //     name: states,
-      //   },
-      //   raw: true,
-      // });
-
-      // await userCreated.addStates(stateSearched[0]);
-      /* userCreated.addCountries(countrySearched);
-      userCreated.addCities(citySearched); */
-
-      res.status(201).json({ message: "User created" });
-    });
   }
 );
 

@@ -19,10 +19,10 @@ router.put("/editprofessional", async (req, res) => {
     photo,
     cvu,
   } = req.body;
-  const profFinded = await db.Professionals.findOne({
+  const profFinded = await db.Professional.findOne({
     where: { id_user: id_user },
   });
-  const userFinded = await db.Users.findOne({
+  const userFinded = await db.User.findOne({
     where: { id: id_user },
   });
   try {

@@ -18,14 +18,14 @@ router.post("/profdbregistration", async (req, res) => {
   console.log("Where? -->>", req.url);
   const { id_user, tuition, trainings, photo, cvu } = req.body;
 
-  const prodFound = await db.Users.findOne({
+  const prodFound = await db.User.findOne({
     where: {
       id: id_user,
     },
     raw: true,
   });
   if (prodFound) {
-    await db.Professionals.create({
+    await db.Professional.create({
       id_user: id_user,
       tuition: tuition,
       trainings: trainings,

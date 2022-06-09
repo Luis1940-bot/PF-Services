@@ -14,7 +14,7 @@ router.put("/edituser", async (req, res) => {
     document,
     phone2,
   } = req.body;
-  const userFinded = await db.Users.findOne({
+  const userFinded = await db.User.findOne({
     where: { email: email },
   });
   try {

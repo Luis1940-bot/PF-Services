@@ -26,7 +26,7 @@ router.get("/userdblogin", async (req, res) => {
   console.log("Where? -->>", req.url);
   const { email, password } = req.body;
   if (email && password) {
-    const userFound = await db.Users.findOne({
+    const userFound = await db.User.findOne({
       where: {
         email,
       },

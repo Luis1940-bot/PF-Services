@@ -5,10 +5,6 @@ const path = require("path");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
-// const sequelize = new Sequelize(
-//   `postgres://postgres:admin@localhost:5432/food`,
-
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
@@ -41,35 +37,30 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-//<<<<<<< passport
-// const { User  } = sequelize.models;
+// const {
+//   AgeRange,
+//   Citiy,
+//   Commission,
+//   Condition,
+//   Contract,
+//   Country,
+//   Post,
+//   Professional,
+//   Specialty,
+//   State,
+//   Taxe,
+//   User,
+// } = sequelize.models;
+const { Users, States, Cities, Countries } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-// Recipe.belongsToMany(Diet, {
-//   through: "recipeDiet",
-// });
-// Diet.belongsToMany(Recipe, {
-//   through: "recipeDiet",
-// });
+States.hasMany(Users);
+Users.belongsTo(States);
 
-//!---se mutea para generar las tablas en la base de datos
-const {
-  AgeRanges,
-  Cities,
-  Commissions,
-  Conditions,
-  Contracts,
-  Countries,
-  Posts,
-  Professionals,
-  Specialties,
-  States,
-  Taxes,
-  Users,
-} = sequelize.models;
+Cities.hasMany(Users);
+Users.belongsTo(Cities);
+
+Countries.hasMany(Users);
+Users.belongsTo(Countries);
 
 // Professionals.belongsToMany(AgeRanges, { through: "ProfessionalsAgeranges" });
 // AgeRanges.belongsToMany(Professionals, { through: "ProfessionalsAgeranges" });
