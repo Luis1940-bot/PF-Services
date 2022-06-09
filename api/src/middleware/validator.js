@@ -8,13 +8,13 @@ const userValidationRules = () => {
       .isAlpha("es-ES", { ignore: " " })
       .notEmpty()
       .withMessage("Should be alpha. Between 3 and 20 characters"),
-    body("username")
-      .isLength({ min: 3 }, { max: 20 })
-      .isAlphanumeric("en-US")
-      .notEmpty()
-      .withMessage(
-        "Should be alphanumeric. No blank space. Between 3 and 20 characters"
-      ),
+    // body("username")
+    //   .isLength({ min: 3 }, { max: 20 })
+    //   .isAlphanumeric("en-US")
+    //   .notEmpty()
+    //   .withMessage(
+    //     "Should be alphanumeric. No blank space. Between 3 and 20 characters"
+    //   ),
     body("surname")
       .isLength({ min: 3 }, { max: 20 })
       .isAlpha("es-ES", { ignore: " " })
@@ -50,10 +50,10 @@ const userValidationRules = () => {
       .isNumeric("en-US")
       .notEmpty()
       .withMessage("Should be numeric. Between 5 and 20 characters"),
-    body("active")
-      .isBoolean("en-US")
-      .notEmpty()
-      .withMessage("Should be boolean"),
+    // body("active")
+    //   .isBoolean("en-US")
+    //   .notEmpty()
+    //   .withMessage("Should be boolean"),
     body("email").isEmail().notEmpty().withMessage("Should be email"),
     body("phone2")
       .isLength({ min: 5 }, { max: 20 })

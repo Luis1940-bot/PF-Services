@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 //----
 const db = require("../db.js");
 router.use(cookieParser());
+router.use(express.json());
 router.use(
   express.urlencoded({
     extended: true,
@@ -24,46 +25,52 @@ console.log("ENTRO A userdblogin.js");
 
 router.get("/userdblogin", async (req, res) => {
   console.log("Where? -->>", req.url);
-  const { email, password } = req.body;
-  if (email && password) {
-    const userFound = await db.User.findOne({
-      where: {
-        email,
-      },
-      raw: true,
-    });
-    if (!userFound) {
+  try {
+    const { email, password } = req.body;
+    if (email && password) {
+      const userFound = await db.Users.findOne({
+        where: {
+          email,
+        },
+        raw: true,
+      });
+      if (!userFound) {
+        return res.status(401).json({
+          error: "User not found",
+        });
+      }
+      bcrypt.compare(password, userFound.password, (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            error: "Auth failed",
+          });
+        }
+        if (!result) {
+          return res.status(401).json({ error: "Wrong password" });
+        } else {
+          const accesstoken = jwt.sign(
+            { id: userFound.id, email: userFound.email },
+            process.env.TOKENKEY
+          );
+          res.cookie("userBackend", accesstoken, {
+            expires: new Date(Date.now() + 300000000),
+            httpOnly: true,
+          });
+          res.status(200).json({
+            message: "Login success",
+            email: userFound.email,
+            token: accesstoken,
+          });
+        }
+      });
+    } else {
       return res.status(401).json({
-        error: "User not found",
+        error: "Username and password are required",
       });
     }
-    bcrypt.compare(password, userFound.password, (err, result) => {
-      if (err) {
-        return res.status(401).json({
-          error: "Auth failed",
-        });
-      }
-      if (!result) {
-        return res.status(401).json({ error: "Wrong password" });
-      } else {
-        const accesstoken = jwt.sign(
-          { id: userFound.id, email: userFound.email },
-          process.env.TOKENKEY
-        );
-        res.cookie("userBackend", accesstoken, {
-          expires: new Date(Date.now() + 300000000),
-          httpOnly: true,
-        });
-        res.status(200).json({
-          message: "Login success",
-          email: userFound.email,
-          token: accesstoken,
-        });
-      }
-    });
-  } else {
+  } catch (e) {
     return res.status(401).json({
-      error: "Username and password are required",
+      error: e,
     });
   }
 });

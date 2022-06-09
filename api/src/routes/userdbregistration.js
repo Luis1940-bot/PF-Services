@@ -71,7 +71,8 @@ router.post(
 
       if (created) {
         mensaje = { message: "User created" };
-        const { id, email, name, surname } = user;
+
+        const { id, email, name, surname } = userCreated;
         sendEmailToValidate(email, id, name, surname);
       } else {
         mensaje = { message: "User existent" };
