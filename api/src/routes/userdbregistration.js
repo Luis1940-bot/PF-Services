@@ -55,6 +55,7 @@ router.post(
       }
       password = hash;
 
+//<<<<<<< DNL_0608_nodemailerUser
       await db.States.findOne({
         where: { name: states },
         raw: true,
@@ -86,6 +87,21 @@ router.post(
 
 // console.log(userCreated);
 /* const countrySearched = await Countries.findAll({
+//=======
+      const userCreated = await db.Users.create({
+        email: email,
+        password: password,
+        name: name,
+        surname: surname,
+        phone: phone,
+        address: address,
+        age: age,
+        document: document,
+        phone2: phone2,
+      });
+
+      /* const countrySearched = await Countries.findAll({
+//>>>>>>> back_end
         where: {
           name:country,
         },
@@ -97,12 +113,25 @@ router.post(
         },
       }); */
 
+//<<<<<<< DNL_0608_nodemailerUser
 // const stateSearched = await db.States.findAll({
 //   where: {
 //     name:states,
 //   },
 // });
 // console.log(stateSearched)
+//=======
+      // const stateSearched = await db.States.findAll({
+      //   where: {
+      //     name: states,
+      //   },
+      //   raw: true,
+      // });
+
+      // await userCreated.addStates(stateSearched[0]);
+      /* userCreated.addCountries(countrySearched);
+      userCreated.addCities(citySearched); */
+//>>>>>>> back_end
 
 // await userCreated.addStates(stateSearched);
 /* userCreated.addCountries(countrySearched);
