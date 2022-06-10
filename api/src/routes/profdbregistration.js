@@ -36,7 +36,7 @@ router.post(
           photo: photo,
           cvu: cvu,
         });
-        const { id, email, name, surname } = userCreated;
+        const { id, email, name, surname } = prodFound;
         sendEmailToValidate(email, id, name, surname);
         res.status(201).json({ message: "Professional created" });
       } else {
