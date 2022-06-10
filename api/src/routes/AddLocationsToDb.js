@@ -1,6 +1,10 @@
+const { Router } = require("express");
 const express = require("express");
-const router = express.Router();
 const db = require("../db.js");
+const router = Router();
+router.use(express.json());
+const cors = require("cors");
+router.use(cors());
 
 router.post("/AddLocationsToDb", async (req, res) => {
   try {
@@ -11,6 +15,7 @@ router.post("/AddLocationsToDb", async (req, res) => {
     };
     //COUNTRIES
     obj.countries = require("../JSONs/countries.json").countries;
+
     try {
       await db.Countries.bulkCreate(obj.countries);
       obj.countries = "";
@@ -39,9 +44,7 @@ router.post("/AddLocationsToDb", async (req, res) => {
       res.status(400).send({ error: "During CITIES Loaded to DB!" });
     }
   } catch {
-    res
-      .status(400)
-      .send("El mail ingresado no se encuetra en la base de datos");
+    res.status(400).send("Hubo un error ");
   }
 });
 

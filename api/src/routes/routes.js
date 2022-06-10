@@ -11,6 +11,7 @@ const profAllData = require("./profAllData");
 const statesRoute = require("./statesRoute");
 const userValidationProcess = require("./userValidationProcess");
 const userResendValidationEmail = require("./userResendValidationEmail");
+const AddLocationsToDb = require("./AddLocationsToDb");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -23,5 +24,6 @@ router.use("/", profAllData);
 router.use("/", statesRoute);
 router.use("/", userValidationProcess);
 router.use("/", userResendValidationEmail);
+router.use("/", AddLocationsToDb);
 
 module.exports = router;
