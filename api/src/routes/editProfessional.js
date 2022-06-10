@@ -1,6 +1,11 @@
+const { Router } = require("express");
 const express = require("express");
-const router = express.Router();
 const db = require("../db.js");
+const bcrypt = require("bcrypt");
+const cors = require("cors");
+const router = Router();
+router.use(cors());
+router.use(express.json());
 
 router.put("/editprofessional", async (req, res) => {
   const {
@@ -18,14 +23,30 @@ router.put("/editprofessional", async (req, res) => {
     trainings,
     photo,
     cvu,
+    state,
+    city,
+    country,
   } = req.body;
-  const profFinded = await db.Professional.findOne({
-    where: { id_user: id_user },
-  });
-  const userFinded = await db.User.findOne({
-    where: { id: id_user },
-  });
+
   try {
+    const hash = bcrypt.hashSync(password, 10);
+
+    const stateId = state
+      ? (await db.States.findOne({ where: { name: state } }))?.id
+      : null;
+    const cityId = city
+      ? (await db.Cities.findOne({ where: { name: city } }))?.id
+      : null;
+    const countryId = country
+      ? (await db.Cities.findOne({ where: { name: country } }))?.id
+      : null;
+
+    const profFinded = await db.Professionals.findOne({
+      where: { id_user: id_user },
+    });
+    const userFinded = await db.Users.findOne({
+      where: { id: id_user },
+    });
     Promise.all([profFinded, userFinded]).then((res1, res2) => {
       if (res1[0]) {
         profFinded.update({
@@ -38,7 +59,7 @@ router.put("/editprofessional", async (req, res) => {
       if (res1[1]) {
         userFinded.update({
           email: email,
-          password: password,
+          password: hash,
           name: name,
           surname: surname,
           phone: phone,
@@ -46,6 +67,9 @@ router.put("/editprofessional", async (req, res) => {
           age: age,
           document: document,
           phone2: phone2,
+          stateId: stateId,
+          cityId: cityId,
+          countryId: countryId,
         });
       }
       res.status(200).send("Se modificaron los datos correctamente");

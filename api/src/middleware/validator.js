@@ -107,10 +107,10 @@ const profValidationRules = () => {
     //   .notEmpty()
     //   .withMessage("Should be alphanumeric. Between 5 and 20 characters"),
     // body("age").isNumeric("en-US").notEmpty().withMessage("Should be numeric"),
-    // body("tution")
-    //   .isLength({ max: 35 })
-    //   .notEmpty()
-    //   .withMessage("Should be alphanumeric. Max 35 characters"),
+    body("tuition")
+      .isLength({ max: 35 })
+      .notEmpty()
+      .withMessage("Should be alphanumeric. Max 35 characters"),
     // body("document")
     //   .isLength({ min: 5 }, { max: 20 })
     //   .isNumeric("en-US")
