@@ -5,11 +5,7 @@ const passport = require("../passport/passport.js");
 const bcrypt = require("bcrypt");
 const { sendEmailToValidate } = require("../nodemailer/nodemailer.js");
 //https://www.npmjs.com/package/validator
-const {
-  userValidationRules,
-  userValidShortReg,
-  validate,
-} = require("../middleware/validator.js");
+const { userValidationRules, validate } = require("../middleware/validator.js");
 const router = Router();
 router.use(express.json());
 const cors = require("cors");
