@@ -6,12 +6,12 @@ module.exports = (sequelize) => {
   sequelize.define(
     "cities",
     {
-      // id: {
-      //   type: DataTypes.INTEGER,
-      //   autoIncrement: false,
-      //   allowNull: false,
-      //   primaryKey: true,
-      // },
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: false,
+        allowNull: false,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: true,
