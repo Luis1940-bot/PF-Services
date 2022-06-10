@@ -65,46 +65,12 @@ Users.belongsTo(Countries);
 Users.hasMany(Professionals);
 Professionals.belongsTo(Users);
 
-// Countries.hasMany(States);
-// States.belongsTo(Countries);
-
-// Professionals.belongsToMany(AgeRanges, { through: "ProfessionalsAgeranges" });
-// AgeRanges.belongsToMany(Professionals, { through: "ProfessionalsAgeranges" });
-
-// Professionals.belongsToMany(Specialties, {
-//   through: "ProfessionalsSpecialties",
-// });
-// Specialties.belongsToMany(Professionals, {
-//   through: "ProfessionalsSpecialties",
-// });
-
-// Users.hasOne(Cities);
-// Cities.belongsToMany(Users, { through: "UsersCities" });
-
-// Users.belongsToMany(States, { through: "UsersStates" });
-// States.belongsToMany(Users, { through: "UsersStates" });
-
-// Users.hasOne(Countries);
-// Countries.belongsToMany(Users, { through: "UsersCountries" });
-
-// Posts.hasOne(Cities);
-// Cities.belongsToMany(Posts, { through: "PostsCities" });
-
-// Posts.hasOne(States);
-// States.belongsToMany(Posts, { through: "PostsStates" });
-
-// Posts.hasOne(Countries);
-// Countries.belongsToMany(Posts, { through: "PostsCountries" });
-
-// Users.hasMany(Posts);
-// Posts.belongsTo(Users);
-
-// Posts.belongsToMany(Conditions, { through: "PostsConditions" });
-// Conditions.belongsToMany(Posts, { through: "PostConditions" });
-
-// Professionals.hasMany(Contracts);
-// Contracts.belongsTo(Professionals);
-//>>>>>>> back_end
+Countries.hasMany(States, {
+  foreignKey: "id_country",
+});
+States.hasMany(Cities, {
+  foreignKey: "id_state",
+});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
