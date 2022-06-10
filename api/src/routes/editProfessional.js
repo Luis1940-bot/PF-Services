@@ -18,7 +18,7 @@ router.put("/editprofessional", async (req, res) => {
     age,
     document,
     phone2,
-    id_user,
+    userId, //id_user
     tuition,
     trainings,
     photo,
@@ -42,10 +42,10 @@ router.put("/editprofessional", async (req, res) => {
       : null;
 
     const profFinded = await db.Professionals.findOne({
-      where: { id_user: id_user },
+      where: { userId: userId },
     });
     const userFinded = await db.Users.findOne({
-      where: { id: id_user },
+      where: { id: userId },
     });
     Promise.all([profFinded, userFinded]).then((res1, res2) => {
       if (res1[0]) {

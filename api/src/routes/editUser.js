@@ -18,10 +18,11 @@ router.put("/edituser", async (req, res) => {
     city,
     country,
   } = req.body;
-  const userFinded = await db.Users.findOne({
-    where: { email: email },
-  });
+
   try {
+    const userFinded = await db.Users.findOne({
+      where: { email: email },
+    });
     if (userFinded) {
       const hash = bcrypt.hashSync(password, 10);
       await userFinded.update({

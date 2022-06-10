@@ -51,7 +51,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 //   Taxe,
 //   User,
 // } = sequelize.models;
-const { Users, States, Cities, Countries } = sequelize.models;
+const { Users, States, Cities, Countries, Professionals } = sequelize.models;
 
 States.hasMany(Users);
 Users.belongsTo(States);
@@ -61,6 +61,9 @@ Users.belongsTo(Cities);
 
 Countries.hasMany(Users);
 Users.belongsTo(Countries);
+
+Users.hasMany(Professionals);
+Professionals.belongsTo(Users);
 
 // Professionals.belongsToMany(AgeRanges, { through: "ProfessionalsAgeranges" });
 // AgeRanges.belongsToMany(Professionals, { through: "ProfessionalsAgeranges" });

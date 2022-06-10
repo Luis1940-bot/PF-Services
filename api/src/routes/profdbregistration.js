@@ -30,11 +30,11 @@ router.post(
       });
       if (prodFound) {
         await db.Professionals.create({
-          id_user: id_user,
           tuition: tuition,
           trainings: trainings,
           photo: photo,
           cvu: cvu,
+          userId: id_user,
         });
         const { id, email, name, surname } = prodFound;
         sendEmailToValidate(email, id, name, surname);
@@ -46,7 +46,7 @@ router.post(
       }
     } catch (e) {
       return res.status(401).json({
-        error: e,
+        error: e.message,
       });
     }
   }
