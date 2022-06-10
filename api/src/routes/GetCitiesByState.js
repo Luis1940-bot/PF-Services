@@ -6,7 +6,7 @@ router.use(express.json());
 const cors = require("cors");
 router.use(cors());
 
-router.get("/GetStatesByCountry/:country", async (req, res) => {
+router.get("/GetCitiesByState/:state", async (req, res) => {
   try {
     // Ageranges: ageranges,
     // Bankings: bankings,
@@ -21,18 +21,20 @@ router.get("/GetStatesByCountry/:country", async (req, res) => {
     // States: states,
     // Taxes: taxes,
     // Users: users,
-    const country = req.params.country;
-    if (country) {
-      const states = await db.Countries.findAll({
-        where: { name: country },
+    const state = req.params.state;
+    console.log(state);
+    if (state) {
+      const cities = await db.States.findAll({
+        where: { name: state },
+
         include: [
           {
-            model: db.States,
+            model: db.Cities,
             attributes: ["name"],
           },
         ],
       });
-      res.status(200).json(states[0].states);
+      res.status(200).json(cities);
     }
   } catch {
     res.status(400).send("Error during GetStatebyCountry Process");

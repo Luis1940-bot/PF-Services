@@ -12,6 +12,8 @@ const statesRoute = require("./statesRoute");
 const userValidationProcess = require("./userValidationProcess");
 const userResendValidationEmail = require("./userResendValidationEmail");
 const AddLocationsToDb = require("./AddLocationsToDb");
+const GetStatesByCountry = require("./GetStatesByCountry");
+const GetCitiesByState = require("./GetCitiesByState");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -25,5 +27,7 @@ router.use("/", statesRoute);
 router.use("/", userValidationProcess);
 router.use("/", userResendValidationEmail);
 router.use("/", AddLocationsToDb);
+router.use("/", GetStatesByCountry);
+router.use("/", GetCitiesByState);
 
 module.exports = router;
