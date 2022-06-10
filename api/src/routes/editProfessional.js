@@ -32,10 +32,10 @@ router.put("/editprofessional", async (req, res) => {
     const hash = bcrypt.hashSync(password, 10);
 
     const stateId = state
-      ? (await db.States.findOne({ where: { name: state } }))?.id
+      ? (await db.States.findOne({ where: { name: state } }))?.id_country
       : null;
     const cityId = city
-      ? (await db.Cities.findOne({ where: { name: city } }))?.id
+      ? (await db.Cities.findOne({ where: { name: city } }))?.id_state
       : null;
     const countryId = country
       ? (await db.Cities.findOne({ where: { name: country } }))?.id

@@ -47,7 +47,7 @@ router.put("/edituser", async (req, res) => {
           : null,
         countryId: country
           ? (
-              await db.Cities.findOne({ where: { name: country } })
+              await db.Countries.findOne({ where: { name: country } })
             )?.id
           : null,
       });
