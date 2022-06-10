@@ -14,7 +14,6 @@ router.get("/users", async (req, res) => {
         {
           model: db.States,
           // required: true,
-          include: [db.Cities, db.Countries],
         },
       ],
       // include: [

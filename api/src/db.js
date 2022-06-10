@@ -65,6 +65,9 @@ Users.belongsTo(Countries);
 Users.hasMany(Professionals);
 Professionals.belongsTo(Users);
 
+// Countries.hasMany(States);
+// States.belongsTo(Countries);
+
 // Professionals.belongsToMany(AgeRanges, { through: "ProfessionalsAgeranges" });
 // AgeRanges.belongsToMany(Professionals, { through: "ProfessionalsAgeranges" });
 
