@@ -17,7 +17,7 @@ router.use(
   })
 );
 
-router.get("/userdblogin", userValidShortReg(), validate, async (req, res) => {
+router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
   try {
     const { email, password } = req.body;
     const userFound = await db.Users.findOne({
