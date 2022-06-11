@@ -15,6 +15,7 @@ const AddLocationsToDb = require("./AddLocationsToDb");
 const GetStatesByCountry = require("./GetStatesByCountry");
 const GetCitiesByState = require("./GetCitiesByState");
 const userdblogout = require("./userdblogout");
+const GetCountries = require("./GetCountries");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -31,5 +32,6 @@ router.use("/", AddLocationsToDb);
 router.use("/", GetStatesByCountry);
 router.use("/", GetCitiesByState);
 router.use("/", userdblogout);
+router.use("/", GetCountries);
 
 module.exports = router;

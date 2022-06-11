@@ -22,7 +22,7 @@ router.get("/GetCitiesByState/:state", async (req, res) => {
     // Taxes: taxes,
     // Users: users,
     const state = req.params.state;
-    console.log(state);
+    // console.log(state);
     if (state) {
       const cities = await db.States.findAll({
         where: { name: state },
