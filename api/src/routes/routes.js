@@ -14,6 +14,7 @@ const userResendValidationEmail = require("./userResendValidationEmail");
 const AddLocationsToDb = require("./AddLocationsToDb");
 const GetStatesByCountry = require("./GetStatesByCountry");
 const GetCitiesByState = require("./GetCitiesByState");
+const userdblogout = require("./userdblogout");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -29,5 +30,6 @@ router.use("/", userResendValidationEmail);
 router.use("/", AddLocationsToDb);
 router.use("/", GetStatesByCountry);
 router.use("/", GetCitiesByState);
+router.use("/", userdblogout);
 
 module.exports = router;
