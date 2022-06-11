@@ -12,22 +12,21 @@ router.get("/users", async (req, res) => {
     const users = await db.Users.findAll({
       include: [
         {
+          model: db.Cities,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
           model: db.States,
-          // required: true,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
         },
       ],
-      // include: [
-      //   {
-      //     model: db.Cities,
-      //     required: true,
-      //   },
-      // ],
-      // include: [
-      //   {
-      //     model: db.Countries,
-      //     required: true,
-      //   },
-      // ],
     });
 
     res.status(201).json(users);
@@ -41,26 +40,23 @@ router.get("/user_professional", async (req, res) => {
     const usersProfessionals = await db.Users.findAll({
       include: [
         {
-          model: db.States,
-          required: true,
-        },
-      ],
-      include: [
-        {
           model: db.Cities,
-          required: true,
+          attributes: ["name"],
+          //required: true,
         },
-      ],
-      include: [
+        {
+          model: db.States,
+          attributes: ["name"],
+          //required: true,
+        },
         {
           model: db.Countries,
-          required: true,
+          attributes: ["name"],
+          //required: true,
         },
-      ],
-      include: [
         {
           model: db.Professionals,
-          required: true,
+          // required: true,
         },
       ],
     });
