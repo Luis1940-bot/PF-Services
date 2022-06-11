@@ -4,20 +4,20 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("posts", {
-    name: {
+    date_post: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    hour_post: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    date: {
-      type: DataTypes.STRING,
+    date_ini: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
-    hour: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    duration: {
-      type: DataTypes.STRING,
+    date_fin: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
     needs: {

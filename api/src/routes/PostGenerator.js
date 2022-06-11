@@ -8,8 +8,10 @@ router.use(cors());
 
 router.post("/postgenerator", async (req, res) => {
   try {
-    const {} = req.body;
+    const { name } = req.body;
   } catch (error) {
     res.send(error);
   }
 });
+
+module.exports = router;

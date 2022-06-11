@@ -51,8 +51,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 //   Taxe,
 //   User,
 // } = sequelize.models;
-const { Users, States, Cities, Countries, Professionals } = sequelize.models;
-
+const { Users, States, Cities, Countries, Professionals, Posts } =
+  sequelize.models;
+// console.log(sequelize.models);
 States.hasMany(Users);
 Users.belongsTo(States);
 
@@ -70,6 +71,9 @@ Countries.hasMany(States, {
 });
 States.hasMany(Cities, {
   foreignKey: "id_state",
+});
+Users.hasMany(Posts, {
+  foreignKey: "id_users",
 });
 
 module.exports = {

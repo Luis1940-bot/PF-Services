@@ -16,7 +16,7 @@ const GetStatesByCountry = require("./GetStatesByCountry");
 const GetCitiesByState = require("./GetCitiesByState");
 const userdblogout = require("./userdblogout");
 const GetCountries = require("./GetCountries");
-const postgenerator = "./PostGenerator.js";
+const postgenerator = require("./PostGenerator.js");
 
 //Routes and middlewares
 router.use("/", userdblogin);
