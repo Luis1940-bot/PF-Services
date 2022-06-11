@@ -123,7 +123,11 @@ const userValidShortReg = () => {
       .withMessage("Should contain at least one alphanumeric character")
       .notEmpty()
       .withMessage("Should not be empty"),
-    body("email").isEmail().notEmpty().withMessage("Should be email"),
+    body("email")
+      .isEmail()
+      .withMessage("Should be email")
+      .notEmpty()
+      .withMessage("Should not be empty"),
   ];
 };
 //RECORDAR EXPORTARLO ABAJO!!
