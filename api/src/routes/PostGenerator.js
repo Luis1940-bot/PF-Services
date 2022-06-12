@@ -36,12 +36,11 @@ router.post("/postgenerator", async (req, res) => {
             await db.Cities.findOne({ where: { name: city } })
           )?.id
         : null,
-      raw: true,
+      //raw: true,
     });
 
     if (postCreated) {
       res.status(200).send("Post created");
-      res.status(200).json(postCreated);
     } else {
       res.status(400).send("Error");
     }
@@ -92,6 +91,27 @@ router.get("/infoGralPost", async (req, res) => {
       ],
     });
     res.status(201).json(posts);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.delete("/deletePost/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id) {
+      await db.Posts.destroy({
+        where: {
+          id: id,
+        },
+      });
+      return res.status(200).send("Post deleted");
+    } else {
+      return res.status(400).json({
+        error: "information required for post validation",
+      });
+    }
   } catch (error) {
     res.send(error);
   }
