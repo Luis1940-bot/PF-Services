@@ -1,22 +1,22 @@
 {
-  "specialtes": [
+  "specialities": [
     {
-      "name": "Acompañante Terapéutico"
+      "specialty": "Acompañante Terapéutico"
     },
     {
-      "name": "Aplicaciones"
+      "specialty": "Aplicaciones"
     },
     {
-      "name": "Extracciones"
+      "specialty": "Extracciones"
     },
     {
-      "name": "Control de la Tensión"
+      "specialty": "Control de la Tensión"
     },
     {
-      "name": "Cuidado de personas"
+      "specialty": "Cuidado de personas"
     },
     {
-      "name": "Curaciones de todo tipo"
+      "specialty": "Curaciones de todo tipo"
     }
   ]
 }
