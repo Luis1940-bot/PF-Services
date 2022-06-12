@@ -1,27 +1,39 @@
 import React from 'react'
 import Start from './Start/Start.js'
+import WhatDoWeDo from "./WhatDoWeDo/WhatDoWeDo.js"
 import "./Landingpage.css"
+import Services from './Services/Services.js'
+import ChooseUs from './ChooseUs/ChooseUs.js'
+import Post from './Post/Post.js'
+import Testimonials from './Testimonials/Testimonials.js'
+import Contact from './Contact/Contact.js'
 
 
 function Home() {
 
 
   return (
-    <div className='containerHome' >
-      <section className="section" id="home">
+    <div className='containerHome' id={"firtsDiv"}  >
+      <section className="section" id="start">
         <Start />
       </section >
-      <section className="section" id="about" >
-        <h1>seccion 2</h1>
+      <section className="section" id="whatDoWeDo" >
+        <WhatDoWeDo />
       </section>
       <section className="section" id="service">
-        <h1>seccion 3</h1>
+        <Services />
       </section>
-      <section className="section" id="testimonio">
-        <h1>seccion 4</h1>
+      <section className="section" id="post">
+        <ChooseUs />
+      </section>
+      <section className="section" id="chooseUs">
+        <Post />
+      </section>
+      <section className="section" id="testimonials">
+        <Testimonials />
       </section>
       <section className="section" id="contact">
-        <h1>seccion 5</h1>
+        <Contact />
       </section>
     </div>
   )
