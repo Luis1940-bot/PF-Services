@@ -30,8 +30,8 @@ router.post("/postgenerator", async (req, res) => {
       active: active,
       locationReference: locationReference,
       contact_phone: contact_phone,
-      id_users: id_users,
-      id_city: city
+      userId: id_users,
+      cityId: city
         ? (
             await db.Cities.findOne({ where: { name: city } })
           )?.id
@@ -50,4 +50,50 @@ router.post("/postgenerator", async (req, res) => {
   }
 });
 
+router.get("/infoDetallePost", async (req, res) => {
+  try {
+    const posts = await db.Posts.findAll({
+      include: [
+        {
+          model: db.Users,
+          //attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.Cities,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+    res.status(201).json(posts);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.get("/infoGralPost", async (req, res) => {
+  try {
+    const posts = await db.Posts.findAll({
+      attributes: ["id", "date_post", "date_ini", "date_fin", "needs"],
+
+      include: [
+        {
+          model: db.Users,
+          attributes: ["name", "age"],
+
+          //required: true,
+        },
+        {
+          model: db.Cities,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+    res.status(201).json(posts);
+  } catch (error) {
+    res.send(error);
+  }
+});
 module.exports = router;
