@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("posts", {
     date_post: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: true,
     },
     hour_post: {
@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     date_ini: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: true,
     },
     date_fin: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: true,
     },
     needs: {
@@ -27,6 +27,7 @@ module.exports = (sequelize) => {
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
+      defaultValue: true,
     },
 
     locationReference: {

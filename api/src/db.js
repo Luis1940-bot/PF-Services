@@ -61,9 +61,7 @@ States.hasMany(Cities, {
 Users.hasMany(Posts, {
   foreignKey: "id_users",
 });
-Specialties.hasMany(Posts, {
-  foreignKey: "id_specialty",
-});
+
 Cities.hasMany(Posts, {
   foreignKey: "id_city",
 });

@@ -1,22 +1,22 @@
 {
   "specialities": [
     {
-      "specialty": "Acompañante Terapéutico"
+      "specialty": "Therapeutic Companion"
     },
     {
-      "specialty": "Aplicaciones"
+      "specialty": "Nurse"
     },
     {
-      "specialty": "Extracciones"
+      "specialty": "Doctor"
     },
     {
-      "specialty": "Control de la Tensión"
+      "specialty": "Kinesiologist"
     },
     {
-      "specialty": "Cuidado de personas"
+      "specialty": "Elderly Companion"
     },
     {
-      "specialty": "Curaciones de todo tipo"
+      "specialty": "Curator"
     }
   ]
 }
