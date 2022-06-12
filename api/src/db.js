@@ -37,22 +37,9 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// const {
-//   AgeRange,
-//   Citiy,
-//   Commission,
-//   Condition,
-//   Contract,
-//   Country,
-//   Post,
-//   Professional,
-//   Specialty,
-//   State,
-//   Taxe,
-//   User,
-// } = sequelize.models;
-const { Users, States, Cities, Countries, Professionals } = sequelize.models;
-
+const { Users, States, Cities, Countries, Professionals, Posts, Specialties } =
+  sequelize.models;
+// console.log(sequelize.models);
 States.hasMany(Users);
 Users.belongsTo(States);
 
@@ -70,6 +57,13 @@ Countries.hasMany(States, {
 });
 States.hasMany(Cities, {
   foreignKey: "id_state",
+});
+Users.hasMany(Posts, {
+  foreignKey: "id_users",
+});
+
+Cities.hasMany(Posts, {
+  foreignKey: "id_city",
 });
 
 module.exports = {

@@ -20,7 +20,7 @@ router.post("/AddLocationsToDb", async (req, res) => {
       await db.Countries.bulkCreate(obj.countries);
       obj.countries = "";
     } catch (error) {
-      res.status(400).send({ error: "During countries Loaded to DB!" });
+      res.status(400).json({ error: "During countries Loaded to DB!" });
     }
 
     //STATES
@@ -29,7 +29,7 @@ router.post("/AddLocationsToDb", async (req, res) => {
       await db.States.bulkCreate(obj.states);
       obj.states = "";
     } catch (error) {
-      res.status(400).send({ error: "During STATES Loaded to DB!" });
+      res.status(400).json({ error: "During STATES Loaded to DB!" });
     }
 
     //CITIES
@@ -41,7 +41,7 @@ router.post("/AddLocationsToDb", async (req, res) => {
         .status(201)
         .send({ message: "Countryes States and Cities loaded in each TABLE!" });
     } catch (error) {
-      res.status(400).send({ error: "During CITIES Loaded to DB!" });
+      res.status(400).json({ error: "During CITIES Loaded to DB!" });
     }
   } catch {
     res.status(400).send("Hubo un error ");
