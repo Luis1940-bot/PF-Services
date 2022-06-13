@@ -246,11 +246,7 @@ const UserRegister = () => {
         ) : null}
       </div>
       <div className="sign-button">
-        <button
-          className="principalButton"
-          type="submit"
-          disabled={formik.errors}
-        >
+        <button className="principalButton" type="submit">
           Registra tu Usuario
         </button>
       </div>
