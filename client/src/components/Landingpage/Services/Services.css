@@ -1,0 +1,59 @@
+.serviceCon{
+    width: 100%;
+}
+.containerServices{
+   text-align: center;
+   display: inline-flex;
+   align-items: center;
+   text-align: center;
+   justify-content: center;
+}
+.oneService{
+    justify-content: left;
+    position: relative;
+    top: -9rem;
+}
+.TwoService{
+    position: relative;
+    top: -10rem;
+    margin-top: -10rem;
+    left: -5rem;
+}
+.TwoTextService{
+    width: 30;
+}
+.threeService{
+    justify-content: right;
+    width: 100%;
+    text-align: right;
+    position: relative;
+    top: -25rem;
+    left: 0;
+}
+.containerDataServices{
+    height: 250px;
+    width: 30%;
+    text-align: right;
+    margin-right: 3rem;
+}
+.serviceBotton{
+    margin-top: 5rem;
+    background-color: var(--main-second-color);
+}
+.oneTextService{
+    position: relative;
+    top: 2rem;
+}
+.TwoTextService{
+    position: relative;
+    top: 5rem;
+}
+.containerImgServicesOne{
+    z-index: 1;
+}
+.containerImgServicesTwo{
+    z-index: 0;
+}
+.containerImgServicesThree{
+    z-index: -1;
+}

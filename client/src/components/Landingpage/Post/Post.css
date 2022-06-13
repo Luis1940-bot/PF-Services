@@ -1,0 +1,132 @@
+.containerPost{
+    width: 80%;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0rem;
+}
+.conatinerCardPost{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0rem;
+}
+.cardPost{
+    height: 200px;
+    width: 550px;
+    margin: 2rem;
+    background: rgba(240, 240, 240, 0.5);
+    border-radius: 25px;
+    box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8.2px);
+    -webkit-backdrop-filter: blur(8.2px);
+    border: 1px solid rgba(174, 174, 174, 0.13);
+    display: inline-flex;
+}
+.cardPostLeft{
+    width: 70%;
+    height: 100%;
+    text-align: right;
+    padding-left: 1rem;
+    /* background-color: red ; */
+}
+.fechaPost{
+    text-align: left;
+    position: relative;
+    left: 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+.fechaPost > span{
+    font-weight: 800;
+    color: var(--main-first-color);
+    margin: 0;
+}
+.namePost{
+    font-family: 'Nunito', sans-serif;
+    color: var(--main-first-color);
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-top: -2rem;
+    margin-bottom: 0;
+}
+.paragraphPost{
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+.postBottonOne{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    /* background-color: aqua; */
+}
+.Post{
+    position: relative;
+    left:-4rem;
+    text-align: right;
+    font-size: 15px;
+    margin-top: -0.5rem;
+}
+.typePost{
+    text-align: right;
+    font-family: 'Nunito', sans-serif;
+    color: var( --main-extra-color);
+    font-weight: 900;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-top: -0.5rem;
+    line-height: 20px;
+}
+.typePost > span{
+    text-align: right;
+    color: var(--main-first-color);
+}
+.calenderIcon{
+    color: var(--main-first-color);
+    font-size: 2.5rem;
+    margin-left: 1rem;
+}
+
+.datePost{
+    font-family: 'Nunito', sans-serif;
+    color: var( --main-extra-color);
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+.datePost > span{
+    text-align: right;
+    color: var(--main-first-color);
+}
+.cardPostRight{
+    width: 30%;
+    height: 100%;
+    /* background-color: rgb(0, 255, 149) ; */
+}
+.imguserPost{
+    width: auto;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+.cityPost{
+    font-family: 'Nunito', sans-serif;
+    color: var( --main-extra-color);
+    font-weight: 900;
+    font-size: 1rem;
+    margin-bottom: 0;
+    margin-top: 0.2rem;
+}
+.cityPost > span{
+    text-align: right;
+    color: var(--main-first-color);
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+

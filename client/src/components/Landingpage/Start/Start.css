@@ -1,57 +1,92 @@
-.conteinerStart{
-    
-}
-.conteinerStartOne{
-    margin-top: 3rem;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-}
 .lineStart{
     position: relative;
-    top: 10rem;
-    height: 200px;
-    width: 10px;
+    top: -7rem;
+    margin-right: .5rem;
+    height: 250px;
+    width: 7px;
     background-color: var(--main-extra-color);
+    /* animation:flip-in-hor-bottom .8s cubic-bezier(.25,.46,.45,.5) both; */
 }
-.containerTextStart{
-    padding: 2rem;
-    width: 400px;
-    height: auto;
-    display: block;
-    background-color: rgb(238, 238, 238);
-}
-.textStarOne{
-    margin-top: 4rem;
-    font-size: 25px;
 
+.Star{
+    margin-left: 2rem;
 }
-.containerImageStart{
+.conteinerBottonStartGeneral{
+    /* background-color: blanchedalmond; */
+}
+.conteinerBottonStart{
     display: flex;
+    margin-top: 2rem;
 }
-.imgStart{
-    margin-left: -12rem;
+.imgStartTwo{
+    margin-top: 0rem;
+    margin-left: 1rem;
     width: auto;
-    height: 700px;
-    margin-right: 0;
+    height: 100px;
+}
+.buttonAppSatartTwo{
+    position: relative;
+    top: 3.5rem;
+    left: 0;
+    font-size: 20px;
+    color: white;
+    background-color: var(--main-second-color);
+    border: 0;
+    height: 35px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 60px;
+    filter: drop-shadow(1px 1px 1px #000);
+}
+    
+.imgStart{
+    margin-left: -14.5rem;
+    width: auto;
+    height: 650px;
+    /* animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both */
 }
 .imgStartOne{
     width: auto;
     height: 170px;
     position: relative;
-    left: 0rem;
-    top: 28rem;
+    left: -3rem;
+    margin-left: 0;
+    top: 10rem;
     filter: drop-shadow(3px 3px 3px #000);
+    /* animation:bounce-in-right 1.5s both; */
+    z-index: 2;
 }
 .conteinerImgStartTwo{
     position: relative;
-    top: 23rem;
-    right: 12rem;
-    margin-right: -10rem;
-    width: 200px;
+    right: 9rem;
+    margin-right:-13rem ;
+    width: 180px;
     height: 90px;
     border-radius: 80px;
     background-color: white;
     filter: drop-shadow(3px 3px 3px #000);
+    /* animation:bounce-in-right 1.5s both; */
 }
+
+@media (max-width: 1300px) {
+    .conteinerStart{
+    /* background-color: aqua; */
+    }
+    .titleStart{
+        /* margin-top: 0;
+        font-size: 50px;
+        font-family: 'Nunito', sans-serif;
+        color: var(--main-extra-color);
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 0;
+        line-height: 1; */
+        /* animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both */
+    }
+
+}
+
+
+/* @keyframes text-focus-in{0%{filter:blur(12px);opacity:0}100%{filter:blur(0);opacity:1}}
+@keyframes bounce-in-right{0%{transform:translateX(600px);animation-timing-function:ease-in;opacity:0}38%{transform:translateX(0);animation-timing-function:ease-out;opacity:1}55%{transform:translateX(68px);animation-timing-function:ease-in}72%{transform:translateX(0);animation-timing-function:ease-out}81%{transform:translateX(32px);animation-timing-function:ease-in}90%{transform:translateX(0);animation-timing-function:ease-out}95%{transform:translateX(8px);animation-timing-function:ease-in}100%{transform:translateX(0);animation-timing-function:ease-out}}
+@keyframes flip-in-hor-bottom{0%{transform:rotateX(80deg);opacity:0}100%{transform:rotateX(0);opacity:1}} */

@@ -10,10 +10,11 @@ const Navbar = () => {
     <div className="Navbar">
       <img className="nav-logo" href="/" src={logo} height={60} alt="logo"/>
       <div className={`nav-items ${isOpen && "open"}`}>
-        <a href="#home">Inicio</a>
-        <a href="#about">Nosotros</a>
-        <a href="/service">Servicios</a>
-        <a href="#contact">Testimonio</a>
+        <a href="#start">Inicio</a>
+        <a href="#whatDoWeDo">Nosotros</a>
+        <a href="#service">Servicios</a>
+        <a href="#testimonials">Testimonio</a>
+        <a href="#contact">Ofertas</a>
         <div className="containerButtonNav">
           <button className="buttonNav">Registrate</button>
           <button className="buttonNavTwo">Ingresa</button>

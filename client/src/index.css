@@ -13,4 +13,17 @@ body {
   padding: 0;
   
 }
+.buttonOne{
+  margin-left: 0rem;  
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  background-color: var(--main-first-color);
+  border: 0;
+  height: 30px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 60px;
+  filter: drop-shadow(1px 1px 1px #000);
+}
 

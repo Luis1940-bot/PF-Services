@@ -1,0 +1,37 @@
+#containersImgWDWD{
+    width: 40%;
+    height: 80%;
+    /* background-color: blueviolet; */
+}
+.boxBackgroundWhatDoWeDoOne{
+    position: relative;
+    top: -33rem;
+    width: 250px;
+    height: 250px;
+    background-color: var(--main-first-color);
+    border-radius: 40px;
+    z-index: -1;
+    /* animation:rotate-diagonal-tl .4s linear both; */
+}
+.boxBackgroundWhatDoWeDoTwo{
+    position: relative;
+    top: -30rem;
+    left: 24rem;
+    width: 250px;
+    height: 250px;
+    background-color: var(--main-first-color);
+    border-radius: 40px;
+    z-index: -1;
+    /* animation:rotate-diagonal-br .4s linear both; */
+}
+.subTitleStarT{
+    font-size: 25px;
+    margin-bottom: 2rem;
+}
+
+
+
+
+@keyframes rotate-diagonal-tl{0%{transform:rotate3d(-1,1,0,0deg);transform-origin:0 0}50%{transform:rotate3d(-1,1,0,180deg);transform-origin:0 0}100%{transform:rotate3d(-1,1,0,360deg);transform-origin:0 0}}
+@keyframes rotate-diagonal-br{0%{transform:rotate3d(-1,1,0,0deg);transform-origin:100% 100%}50%{transform:rotate3d(-1,1,0,-180deg);transform-origin:100% 100%}100%{transform:rotate3d(-1,1,0,-360deg);transform-origin:100% 100%}}
+@keyframes slide-in-left{0%{transform:translateX(-1000px);opacity:0}100%{transform:translateX(0);opacity:1}}
