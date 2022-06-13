@@ -1,23 +1,31 @@
 import React, { useState } from "react";
-import logo from "../../images/logonavbar.png"
+import logo from "../../images/logonavbar.png";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="Navbar">
-      <img className="nav-logo" href="/" src={logo} height={60} alt="logo"/>
+      <img className="nav-logo" href="/" src={logo} height={60} alt="logo" />
       <div className={`nav-items ${isOpen && "open"}`}>
-        <a href="#start">Inicio</a>
+        <Link to="/">
+          <a href="#start">Inicio</a>
+        </Link>
         <a href="#whatDoWeDo">Nosotros</a>
         <a href="#service">Servicios</a>
         <a href="#testimonials">Testimonio</a>
-        <a href="#contact">Ofertas</a>
+        <Link to="/offers">
+          <span>Ofertas</span>
+        </Link>
         <div className="containerButtonNav">
-          <button className="buttonNav">Registrate</button>
-          <button className="buttonNavTwo">Ingresa</button>
+          <Link to="/signin">
+            <button className="buttonNav">Registrate</button>
+          </Link>
+          <Link to="/login">
+            <button className="buttonNavTwo">Ingresa</button>
+          </Link>
         </div>
       </div>
       <div
@@ -31,7 +39,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-  
-  
-
