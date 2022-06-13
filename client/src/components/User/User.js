@@ -29,8 +29,8 @@ const validationSchema = yup.object({
     .string()
     .required("Es necesario llenar este campo.")
     .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      " La contraseña debe contener por lo menos 8 caracteres, uno almenos en Mayúscula, un número y un caracter especial."
+      /^.*(?=.{8,})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      " La contraseña debe ser alfanumérica de min 8 Caracteres."
     ),
   name: yup.string().required("Es necesario llenar este campo"),
   surname: yup.string().required("Es necesario llenar este campo"),
@@ -50,6 +50,7 @@ const UserRegister = () => {
     initialValues,
     onSubmit: (values) => {
       dispatch(signIn(values));
+      alert("Felicidades ");
     },
     validationSchema,
   });
@@ -153,7 +154,7 @@ const UserRegister = () => {
         ) : null}
       </div>
       <div className="sign-spaces">
-        <label className="sign-label">Celular Altenativo*:</label>
+        <label className="sign-label">Celular Altenativo:</label>
         <input
           className="inputs"
           id="phone2"
@@ -169,7 +170,7 @@ const UserRegister = () => {
       </div>
 
       <div className="sign-spaces">
-        <label className="sign-label">DNI*:</label>
+        <label className="sign-label">Doc. de Identificación*:</label>
         <input
           className="inputs"
           id="document"
@@ -245,7 +246,11 @@ const UserRegister = () => {
         ) : null}
       </div>
       <div className="sign-button">
-        <button className="principalButton" type="submit">
+        <button
+          className="principalButton"
+          type="submit"
+          disabled={formik.errors}
+        >
           Registra tu Usuario
         </button>
       </div>
