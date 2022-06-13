@@ -28,4 +28,5 @@
 .contacBotton{
     background-color: white;
     color: var(--main-first-color);
+    cursor:pointer;
 }

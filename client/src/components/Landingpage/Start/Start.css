@@ -27,18 +27,8 @@
 .buttonAppSatartTwo{
     position: relative;
     top: 3.5rem;
-    left: 0;
-    font-size: 20px;
-    color: white;
     background-color: var(--main-second-color);
-    border: 0;
-    height: 35px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius: 60px;
-    filter: drop-shadow(1px 1px 1px #000);
-}
-    
+}  
 .imgStart{
     margin-left: -14.5rem;
     width: auto;

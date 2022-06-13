@@ -3,6 +3,7 @@ import { FaHeartbeat } from "react-icons/fa";
 import servicesImg1 from "./imgServices/servicesImg1.png"
 import servicesImg2 from "./imgServices/servicesImg2.png"
 import servicesImg3 from "./imgServices/servicesImg3.png"
+import { Link } from 'react-router-dom';
 import "./Services.css"
 
 function Services() {
@@ -29,7 +30,9 @@ function Services() {
         </div>
         <div className='containerServices threeService '>
           <div className='containerDataServices TwoTextService '>
+          <Link to="/signin">
             <button className='buttonOne serviceBotton'>Registrate</button>
+          </Link>  
           </div>
           <div className='containerImgServicesThree'>
             <img className='servicesImg3' src={servicesImg3} alt='services_img_thre' />

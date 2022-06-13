@@ -8,23 +8,26 @@ const Navbar = () => {
 
   return (
     <div className="Navbar">
-      <img className="nav-logo" href="/" src={logo} height={60} alt="logo" />
+      <Link to="/">
+        <img className="nav-logo" href="/" src={logo} height={60} alt="logo" />
+      </Link>
       <div className={`nav-items ${isOpen && "open"}`}>
         <Link to="/">
-          <a href="#start">Inicio</a>
+          <span>Inicio</span>
         </Link>
-        <a href="#whatDoWeDo">Nosotros</a>
-        <a href="#service">Servicios</a>
-        <a href="#testimonials">Testimonio</a>
+        <Link to="/about">
+          <span>Nosotros</span>
+        </Link>
         <Link to="/offers">
           <span>Ofertas</span>
         </Link>
+          <a href="#testimonials">Testimonio</a>
         <div className="containerButtonNav">
           <Link to="/signin">
-            <button className="buttonNav">Registrate</button>
+            <button className="buttonOne buttonNav">Registrate</button>
           </Link>
           <Link to="/login">
-            <button className="buttonNavTwo">Ingresa</button>
+            <button className="buttonOne buttonNavTwo">Ingresa</button>
           </Link>
         </div>
       </div>
