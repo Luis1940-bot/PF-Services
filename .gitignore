@@ -68,8 +68,8 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
+# dotenv environment variables file // LOS ENVIO PARA  QUE SEPAN QUE DEBEN ARMAR
+.env 
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -107,3 +107,7 @@ dist
 package-lock.json
 
 varios/
+
+
+#index.js -->> Porque cambio alter:true / force:true en el index.js
+api/index.js
