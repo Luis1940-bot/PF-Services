@@ -7,14 +7,14 @@ import image from "../Signin/Images/doctor_PNG15965.png";
 // import { Link } from "react-router-dom";
 
 const Signin = () => {
-  const [state, setstate] = React.useState(true);
-  const handleClick = () => {
-    if (state === true) {
-      setstate(false);
-    } else {
-      setstate(true);
-    }
-  };
+  // const [state, setstate] = React.useState(true);
+  // const handleClick = () => {
+  //   if (state === true) {
+  //     setstate(false);
+  //   } else {
+  //     setstate(true);
+  //   }
+  // };
 
   return (
     <>
@@ -27,7 +27,7 @@ const Signin = () => {
           <h1 className="sign-tittle">
             Registra <span className="other">tus Datos</span>
           </h1>
-          <div className="change">
+          {/* <div className="change">
             <span className="sign-text">¿Quisieras prestar tus servicios?</span>
 
             <span className="sign-text1">
@@ -37,9 +37,9 @@ const Signin = () => {
               <input type="checkbox" onClick={handleClick} />
               <span className="slider round"></span>
             </label>
-          </div>
-          {state === false ? (
-            <div>
+          </div> */}
+          {/* {state === false ? ( */}
+          {/* <div>
               <UserRegister />
               <div className="sign-prof">
                 <div className="sign-spaces">
@@ -91,10 +91,10 @@ const Signin = () => {
                   </button>
                 </div>
               </div>
-            </div>
-          ) : (
-            <UserRegister />
-          )}
+            </div> */}
+          {/* ) : ( */}
+          <UserRegister />
+          {/* )} */}
         </div>
       </div>
     </>
