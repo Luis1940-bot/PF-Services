@@ -2,16 +2,13 @@
   --main-first-color: #24b8b8;
   --main-second-color: #1d3454;
   --main-extra-color: #7a7979;
-
 }
-
 body {
   margin: 0;
   border: 0;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
 }
 .buttonOne{
   margin-left: 0rem;  
@@ -25,5 +22,11 @@ body {
   padding-right: 1rem;
   border-radius: 60px;
   filter: drop-shadow(1px 1px 1px #000);
+  cursor:pointer;
 }
-
+.buttonOne:hover{
+  /* background-color: white; */
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.646);
+  /* color: var(--main-first-color); */
+  filter: none;
+}

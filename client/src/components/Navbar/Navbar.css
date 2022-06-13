@@ -18,28 +18,12 @@
   display: flex;
 }
 .buttonNav{
-  font-size: 18px;
-  color: white;
-  background-color: var(--main-first-color);
-  border: 0;
-  height: 30px;
-  width: 110px;
-  border-radius: 60px;
-  filter: drop-shadow(1px 1px 1px #000);
   margin-right: 10px;
   margin-bottom: 10px;
-  
 }
 .buttonNavTwo{
-  font-size: 18px;
-  color: white;
   background-color: var(--main-second-color);
-  border: 0;
-  height: 30px;
-  width: 110px;
-  border-radius: 60px;
   filter: drop-shadow(1px 1px 1px #000);
-  
 }
 .Navbar > .nav-items > a {
   color: var(--main-first-color);

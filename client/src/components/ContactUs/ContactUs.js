@@ -1,7 +1,7 @@
 import React from 'react'
 import enconstruccion from "../../images/enconstruccion.jpg"
 
-function Offers() {
+function Contact() {
   return (
     <div>
       <img src={enconstruccion} height={900} alt='en_construccion'/>
@@ -9,4 +9,4 @@ function Offers() {
   )
 }
 
-export default Offers
+export default Contact

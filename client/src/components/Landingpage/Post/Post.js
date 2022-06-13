@@ -3,6 +3,7 @@ import { BiHealth } from "react-icons/bi";
 import { GoCalendar } from "react-icons/go";
 import imguser1 from "./imgPost/imguser1.jpg";
 import imguser2 from "./imgPost/imguser2.jpg";
+import { Link } from 'react-router-dom';
 import "./Post.css"
 
 function Services() {
@@ -24,7 +25,9 @@ function Services() {
                 <h1 className='namePost'>Jhon Doe</h1>
                 <p className='paragraphPost'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore... </p>
                 <div className='postBottonOne'>
-                  <button className='buttonOne Post'>Mas info</button>
+                  <Link to="/offers">
+                    <button className='buttonOne Post'>Mas info</button>
+                  </Link>
                   <p className='typePost'>Tipo de servicio: <br></br><span>Cuidado Adulto Mayor </span> </p>
                 </div>
                 <div className='postBottonOne'>
@@ -43,7 +46,9 @@ function Services() {
                 <h1 className='namePost'>Jhon Doe</h1>
                 <p className='paragraphPost'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore... </p>
                 <div className='postBottonOne'>
-                  <button className='buttonOne Post'>Mas info</button>
+                  <Link to="/offers">
+                    <button className='buttonOne Post'>Mas info</button>
+                  </Link>
                   <p className='typePost'>Tipo de servicio: <br></br><span>Terapia fisica </span> </p>
                 </div>
                 <div className='postBottonOne'>
@@ -65,7 +70,9 @@ function Services() {
                <h1 className='namePost'>Jhon Doe</h1>
                <p className='paragraphPost'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore... </p>
                <div className='postBottonOne'>
-                 <button className='buttonOne Post'>Mas info</button>
+                <Link to="/offers">
+                    <button className='buttonOne Post'>Mas info</button>
+                </Link>
                  <p className='typePost'>Tipo de servicio: <br></br><span>Cuidado Adulto Mayor </span> </p>
                </div>
                <div className='postBottonOne'>
@@ -84,7 +91,9 @@ function Services() {
                <h1 className='namePost'>Jhon Doe</h1>
                <p className='paragraphPost'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore... </p>
                <div className='postBottonOne'>
-                 <button className='buttonOne Post'>Mas info</button>
+                  <Link to="/offers">
+                    <button className='buttonOne Post'>Mas info</button>
+                  </Link>
                  <p className='typePost'>Tipo de servicio: <br></br><span>Terapia fisica </span> </p>
                </div>
                <div className='postBottonOne'>
