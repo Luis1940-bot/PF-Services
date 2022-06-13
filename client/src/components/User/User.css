@@ -1,0 +1,46 @@
+.sign-spaces {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px 30px;
+  text-align: left;
+}
+.sign-spaces .sign-label {
+  align-self: flex-start;
+  font-size: 1.5rem;
+  font-family: "Nunito", sans-serif;
+  color: var(--main-second-color);
+}
+.sign-tittle {
+  font-size: 60px;
+  margin: 10px 10px 0px 10px;
+  color: var(--main-second-color);
+  font-family: "Nunito", sans-serif;
+}
+
+.sign-error {
+  align-self: flex-start;
+  font-size: 1rem;
+  color: var(--main-second-color);
+  font-family: "Source Serif Pro", serif;
+}
+
+.sign-space {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 5px 30px;
+  text-align: left;
+  font-size: 1.5rem;
+  font-family: "Nunito", sans-serif;
+  color: var(--main-second-color);
+}
+.inputs {
+  width: 110%;
+  padding: 12px 20px;
+  margin: 2px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  box-sizing: border-box;
+  -webkit-box-shadow: inset 2px 2px 7px 2px rgba(0, 0, 0, 0.78);
+  box-shadow: inset 1px 1px 5px 1px rgba(0, 0, 0, 0.78);
+}
