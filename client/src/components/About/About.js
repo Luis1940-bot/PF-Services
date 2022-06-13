@@ -4,6 +4,7 @@ import './About.css'
 function About() {
   return <div className="under">
           <img src={pending} alt=""/>
+          
         </div>;
 }
 
