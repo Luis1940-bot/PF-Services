@@ -38,8 +38,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    available: {
-      type: DataTypes.STRING,
+    availableTime_0: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    availableTime_1: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    agePatient: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    namePatient: {
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   });
