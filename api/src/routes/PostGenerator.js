@@ -19,6 +19,10 @@ router.post("/postgenerator", async (req, res) => {
       contact_phone,
       id_users,
       city,
+      specialtyPatient,
+      agePatient,
+      namePatient,
+      availableTime,
     } = req.body;
 
     const postCreated = await db.Posts.create({
