@@ -51,7 +51,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     namePatient: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
     },
   });

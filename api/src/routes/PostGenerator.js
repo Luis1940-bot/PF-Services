@@ -22,9 +22,18 @@ router.post("/postgenerator", async (req, res) => {
       specialtyPatient,
       agePatient,
       namePatient,
-      availableTime,
+      availableTime_0,
+      availableTime_1,
     } = req.body;
-
+    console.log(db);
+    console.log(req.body);
+    console.log(
+      "<<<<<<<<<<<<<<<<<<<<<<",
+      await db.Specialties.findOne({
+        where: { specialty: specialtyPatient },
+        raw: true,
+      })
+    );
     const postCreated = await db.Posts.create({
       date_post: date_post,
       hour_post: hour_post,
@@ -40,7 +49,17 @@ router.post("/postgenerator", async (req, res) => {
             await db.Cities.findOne({ where: { name: city } })
           )?.id
         : null,
-      //raw: true,
+      specialtyId: specialtyPatient
+        ? (
+            await db.Specialties.findOne({
+              where: { specialty: specialtyPatient },
+            })
+          )?.id
+        : null,
+      agePatient: agePatient,
+      namePatient: namePatient,
+      availableTime_0: availableTime_0,
+      availableTime_1: availableTime_1,
     });
 
     if (postCreated) {
