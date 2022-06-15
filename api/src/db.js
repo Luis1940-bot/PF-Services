@@ -82,6 +82,12 @@ Posts.belongsTo(Countries);
 Posts.hasMany(Auctions);
 Auctions.belongsTo(Posts);
 
+Professionals.hasMany(Auctions);
+Auctions.belongsTo(Professionals);
+
+Users.hasMany(Auctions);
+Auctions.belongsTo(Users);
+
 Posts.hasMany(Specialties);
 Specialties.belongsTo(Posts);
 
