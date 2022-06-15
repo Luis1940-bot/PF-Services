@@ -37,8 +37,16 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Users, States, Cities, Countries, Professionals, Posts, Specialties } =
-  sequelize.models;
+const {
+  Users,
+  States,
+  Cities,
+  Countries,
+  Professionals,
+  Posts,
+  Specialties,
+  Auctions,
+} = sequelize.models;
 // console.log(sequelize.models);
 States.hasMany(Users);
 Users.belongsTo(States);
@@ -64,6 +72,21 @@ Posts.belongsTo(Users);
 
 Cities.hasMany(Posts);
 Posts.belongsTo(Cities);
+
+States.hasMany(Posts);
+Posts.belongsTo(States);
+
+Countries.hasMany(Posts);
+Posts.belongsTo(Countries);
+
+Posts.hasMany(Auctions);
+Auctions.belongsTo(Posts);
+
+Professionals.hasMany(Auctions);
+Auctions.belongsTo(Professionals);
+
+Users.hasMany(Auctions);
+Auctions.belongsTo(Users);
 
 Specialties.hasMany(Posts);
 Posts.belongsTo(Specialties);

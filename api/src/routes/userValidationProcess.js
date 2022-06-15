@@ -9,7 +9,7 @@ function isNumeric(value) {
   return /^-?\d+$/.test(value);
 }
 
-router.get("/userValidationProcess/:id", async (req, res) => {
+router.put("/userValidationProcess/:id", async (req, res) => {
   const { id } = req.params;
   console.log("Where? -->>", req.url);
   console.log("id", id);
