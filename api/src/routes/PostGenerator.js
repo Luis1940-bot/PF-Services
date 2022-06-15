@@ -70,20 +70,44 @@ router.post("/postgenerator", async (req, res) => {
     if (postCreated) {
       res.status(200).send("Post created");
     } else {
-      res.status(400).send("Error");
+      res.status(422).send("Existing Post ");
     }
   } catch (error) {
-    res.send(error);
+    res.status(400).send(error);
   }
 });
 
 router.get("/infoDetallePost", async (req, res) => {
   try {
     const posts = await db.Posts.findAll({
+      attributes: [
+        "id",
+        "hour_post",
+        "date_post",
+        "date_ini",
+        "date_fin",
+        "needs",
+        "availableTime_0",
+        "availableTime_1",
+        "agePatient",
+        "namePatient",
+        "locationReference",
+        "contact_phone",
+      ],
       include: [
         {
           model: db.Users,
-          //attributes: ["name"],
+          attributes: [
+            "id",
+            "name",
+            "surname",
+            "phone",
+            "address",
+            "age",
+            "document",
+            "email",
+            "phone2",
+          ],
           //required: true,
         },
         {

@@ -88,8 +88,8 @@ Auctions.belongsTo(Professionals);
 Users.hasMany(Auctions);
 Auctions.belongsTo(Users);
 
-Posts.hasMany(Specialties);
-Specialties.belongsTo(Posts);
+Specialties.hasMany(Posts);
+Posts.belongsTo(Specialties);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
