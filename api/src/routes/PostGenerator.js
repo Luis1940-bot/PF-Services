@@ -144,7 +144,7 @@ router.get("/infoDetallePost/:id", async (req, res) => {
       });
       res.status(201).json(posts);
     } else {
-      res.status(400).send("No envió un ID");
+      res.status(422).send("No envió un ID");
     }
   } catch (error) {
     res.status(400).send(error);
