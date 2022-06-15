@@ -19,6 +19,8 @@ router.post("/postgenerator", async (req, res) => {
       contact_phone,
       id_users,
       city,
+      state,
+      country,
       specialtyPatient,
       agePatient,
       namePatient,
@@ -36,12 +38,21 @@ router.post("/postgenerator", async (req, res) => {
       locationReference: locationReference,
       contact_phone: contact_phone,
       userId: id_users,
+      stateId: state
+        ? (
+            await db.States.findOne({ where: { name: state } })
+          )?.id
+        : null,
       cityId: city
         ? (
             await db.Cities.findOne({ where: { name: city } })
           )?.id
         : null,
-      raw: true,
+      countryId: country
+        ? (
+            await db.Countries.findOne({ where: { name: country } })
+          )?.id
+        : null,
       specialtyId: specialtyPatient
         ? (
             await db.Specialties.findOne({
@@ -76,7 +87,20 @@ router.get("/infoDetallePost", async (req, res) => {
           //required: true,
         },
         {
+          model: db.Specialties,
+          attributes: ["specialty"],
+          //required: true,
+        },
+        {
           model: db.Cities,
+          attributes: ["name"],
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+        },
+        {
+          model: db.Countries,
           attributes: ["name"],
           //required: true,
         },
@@ -88,25 +112,50 @@ router.get("/infoDetallePost", async (req, res) => {
   }
 });
 
-router.get("/infoGralPost", async (req, res) => {
+router.get("/infoCardPost", async (req, res) => {
   try {
     const posts = await db.Posts.findAll({
-      attributes: ["id", "date_post", "date_ini", "date_fin", "needs"],
+      attributes: [
+        "id",
+        "hour_post",
+        "date_post",
+        "date_ini",
+        "date_fin",
+        "needs",
+        "availableTime_0",
+        "availableTime_1",
+        "agePatient",
+        "namePatient",
+      ],
 
       include: [
         {
           model: db.Users,
-          attributes: ["name", "age"],
+          attributes: ["id", "name", "age"],
 
+          //required: true,
+        },
+        {
+          model: db.Specialties,
+          attributes: ["specialty"],
           //required: true,
         },
         {
           model: db.Cities,
           attributes: ["name"],
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
           //required: true,
         },
       ],
     });
+
     res.status(201).json(posts);
   } catch (error) {
     res.send(error);
