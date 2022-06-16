@@ -5,13 +5,20 @@ const path = require("path");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-  {
-    logging: false, // set to console.log to see the raw SQL queries
-    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  }
-);
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+//   {
+//     logging: false, // set to console.log to see the raw SQL queries
+//     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   }
+// );
+
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  logging: true, // true para ver logs de creacion de tablas y otros
+  host: DB_HOST,
+  dialect: "mysql",
+  port: DB_PORT,
+});
 
 const basename = path.basename(__filename);
 
