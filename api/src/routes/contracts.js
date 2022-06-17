@@ -126,4 +126,95 @@ router.get("/getContracts", async (req, res) => {
   }
 });
 
+router.get("/infoDetalleContracts/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      const contracts = await db.Contracts.findAll({
+        where: { id: parseInt(id) },
+        attributes: ["id", "price", "date", "hour", "postId"],
+        include: [
+          {
+            model: db.Auctions,
+            attributes: ["id", "offer", "comment", "approved"],
+
+            include: [
+              {
+                model: db.Posts,
+                attributes: [
+                  "date_post",
+                  "date_ini",
+                  "date_fin",
+                  "needs",
+                  "active",
+                  "locationReference",
+                  "contact_phone",
+                  "agePatient",
+                  "namePatient",
+                  "addressPatient",
+                ],
+                include: [
+                  {
+                    model: db.Cities,
+                    attributes: ["name"],
+                  },
+                  {
+                    model: db.States,
+                    attributes: ["name"],
+                  },
+                  {
+                    model: db.Countries,
+                    attributes: ["name"],
+                  },
+                  {
+                    model: db.Users,
+                    attributes: ["name", "surname", "email", "phone"],
+                  },
+                ],
+              },
+              {
+                model: db.Professionals,
+                attributes: ["cvu", "photo"],
+                include: [
+                  {
+                    model: db.Users,
+                    attributes: [
+                      "name",
+                      "surname",
+                      "phone",
+                      "age",
+                      "document",
+                      "email",
+                    ],
+                    include: [
+                      {
+                        model: db.Cities,
+                        attributes: ["name"],
+                      },
+                      {
+                        model: db.States,
+                        attributes: ["name"],
+                      },
+                      {
+                        model: db.Countries,
+                        attributes: ["name"],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      res.status(201).json(contracts);
+    } else {
+      res.status(422).send("No envió un ID");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;
