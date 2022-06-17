@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db.js");
+const cors = require("cors");
+router.use(cors());
 
 console.log("ENTRO a statesRoute.js");
 

@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("posts", {
     date_post: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: true,
     },
     hour_post: {
@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     date_ini: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: true,
     },
     date_fin: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: true,
     },
     needs: {
@@ -51,6 +51,10 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     namePatient: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    addressPatient: {
       type: DataTypes.STRING,
       allowNull: true,
     },
