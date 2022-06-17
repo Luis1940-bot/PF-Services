@@ -56,6 +56,7 @@ router.get("/traerPostByAuction/:id", async (req, res) => {
           "availableTime_1",
           "agePatient",
           "namePatient",
+          "addressPatient",
           "locationReference",
           "contact_phone",
         ],
@@ -141,6 +142,7 @@ router.get("/traerPostByProfessionals/:id", async (req, res) => {
               "availableTime_1",
               "agePatient",
               "namePatient",
+              "addressPatient",
             ],
             include: [
               {

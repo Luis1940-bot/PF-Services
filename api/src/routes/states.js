@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = require("./userdbregistration");
 const db = require("../db.js");
+const cors = require("cors");
+router.use(cors());
 
 const states = [
   "Misiones",
