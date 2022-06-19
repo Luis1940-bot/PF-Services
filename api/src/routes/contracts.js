@@ -120,7 +120,11 @@ router.get("/getContracts", async (req, res) => {
         },
       ],
     });
-    res.status(201).json(contracts);
+    if (contracts.length > 0) {
+      res.status(201).json(contracts);
+    } else {
+      res.status(422).json("Not found");
+    }
   } catch (error) {
     res.status(400).send(error);
   }
@@ -208,7 +212,11 @@ router.get("/infoDetalleContracts/:id", async (req, res) => {
           },
         ],
       });
-      res.status(201).json(contracts);
+      if (contracts.length > 0) {
+        res.status(201).json(contracts);
+      } else {
+        res.status(422).json("Not found");
+      }
     } else {
       res.status(422).send("No envió un ID");
     }

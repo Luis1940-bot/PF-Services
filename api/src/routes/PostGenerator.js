@@ -145,7 +145,11 @@ router.get("/infoDetallePost/:id", async (req, res) => {
           },
         ],
       });
-      res.status(201).json(posts);
+      if (posts.length > 0) {
+        res.status(201).json(posts);
+      } else {
+        res.status(422).json("Not found");
+      }
     } else {
       res.status(422).send("No envió un ID");
     }
@@ -199,7 +203,11 @@ router.get("/infoCardPost", async (req, res) => {
       ],
     });
 
-    res.status(201).json(posts);
+    if (posts.length > 0) {
+      res.status(201).json(posts);
+    } else {
+      res.status(422).json("Not found");
+    }
   } catch (error) {
     res.send(error);
   }

@@ -10,7 +10,11 @@ router.get("/professionals", async (req, res) => {
   try {
     const professional = await db.Professionals.findAll();
 
-    res.status(201).json(professional);
+    if (professional.length > 0) {
+      res.status(201).json(professional);
+    } else {
+      res.status(422).json("Not found");
+    }
   } catch (e) {
     res.send(e);
   }

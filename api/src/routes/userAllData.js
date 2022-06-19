@@ -29,7 +29,11 @@ router.get("/users", async (req, res) => {
       ],
     });
 
-    res.status(201).json(users);
+    if (users.length > 0) {
+      res.status(201).json(users);
+    } else {
+      res.status(422).json("Not found");
+    }
   } catch (e) {
     res.send(e);
   }
@@ -61,7 +65,11 @@ router.get("/user_professional", async (req, res) => {
       ],
     });
 
-    res.status(201).json(usersProfessionals);
+    if (usersProfessionals.length > 0) {
+      res.status(201).json(usersProfessionals);
+    } else {
+      res.status(422).json("Not found");
+    }
   } catch (e) {
     res.send(e);
   }
