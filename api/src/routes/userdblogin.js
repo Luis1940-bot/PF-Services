@@ -12,7 +12,7 @@ const db = require("../db.js");
 const cors = require("cors");
 router.use(
   cors({
-    origin: process.env.URL_CLIENT,
+    origin: "*", //process.env.URL_CLIENT
     credentials: true,
     allowedHeaders: "Content-Type, Authorization",
   })
