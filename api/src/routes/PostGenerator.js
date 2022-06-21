@@ -303,4 +303,77 @@ router.put("/activeTruePost/:id", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+router.get("/posteosUsersByUserID/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      const postFound = await db.Posts.findAll({
+        attributes: [
+          "id",
+          "hour_post",
+          "date_post",
+          "date_ini",
+          "date_fin",
+          "needs",
+          "availableTime_0",
+          "availableTime_1",
+          "agePatient",
+          "namePatient",
+          "locationReference",
+          "contact_phone",
+          "addressPatient",
+        ],
+
+        include: [
+          {
+            model: db.Users,
+            where: { id: parseInt(id) },
+            attributes: [
+              "id",
+              "name",
+              "surname",
+              "phone",
+              "address",
+              "age",
+              "document",
+              "email",
+              "phone2",
+            ],
+            //required: true,
+          },
+          {
+            model: db.Specialties,
+            attributes: ["specialty"],
+            //required: true,
+          },
+          {
+            model: db.Cities,
+            attributes: ["name"],
+          },
+          {
+            model: db.States,
+            attributes: ["name"],
+          },
+          {
+            model: db.Countries,
+            attributes: ["name"],
+            //required: true,
+          },
+        ],
+      });
+      if (postFound.length > 0) {
+        res.status(201).json(postFound);
+      } else {
+        res.status(422).json("Not found");
+      }
+    } else {
+      return res.status(422).send("No se envió ID");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;
