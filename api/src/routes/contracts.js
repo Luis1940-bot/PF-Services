@@ -19,7 +19,7 @@ router.post("/addContracts", async (req, res) => {
         price: offer,
         hour: hour,
         auctionsId: auctionsId,
-        postsId: postsId,
+        postId: postId,
       },
     });
     if (created) {

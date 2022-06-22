@@ -3,6 +3,7 @@ const express = require("express");
 const db = require("../db");
 const passport = require("../passport/passport.js");
 const bcrypt = require("bcrypt");
+
 const { sendEmailToValidate } = require("../nodemailer/nodemailer.js");
 //https://www.npmjs.com/package/validator
 const { userValidationRules, validate } = require("../middleware/validator.js");
@@ -80,5 +81,9 @@ router.post(
     }
   }
 );
+
+router.post("/upload", function (req, res) {
+  console.log(req.files); // the uploaded file object
+});
 
 module.exports = router;

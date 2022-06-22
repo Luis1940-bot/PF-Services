@@ -7,18 +7,21 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
 const { userValidShortReg, validate } = require("../middleware/validator.js");
-//----
+
 const db = require("../db.js");
 const cors = require("cors");
+
 router.use(
   cors({
-    origin: "*", //process.env.URL_CLIENT
+    origin: true, //process.env.URL_CLIENT,
     credentials: true,
-    allowedHeaders: "Content-Type, Authorization",
+    //allowedHeaders: "Content-Type, Authorization",
   })
 );
 router.use(cookieParser());
+
 router.use(express.json());
+
 router.use(
   express.urlencoded({
     extended: true,
@@ -28,6 +31,7 @@ router.use(
 router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const userFound = await db.Users.findOne({
       where: {
         email: email,
@@ -114,7 +118,7 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
       res.cookie("userBackend", tokenBack, {
         expires: new Date(Date.now() + 3 * 60 * 60 * 1000), //3 hours expiration
         httpOnly: true,
-        sameSite: none,
+        sameSite: "none",
         secure: true,
       });
       // COOKIE FRONTEND
@@ -122,9 +126,10 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
         "SessionUserClickCare",
         { userId: userFound.id },
         {
+          domain: "*",
           expires: new Date(Date.now() + 3 * 60 * 60 * 1000), //3 hours expiration
           httpOnly: false,
-          sameSite: none,
+          sameSite: false,
           secure: true,
         }
       );
