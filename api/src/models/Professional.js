@@ -36,5 +36,29 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: 0,
     },
+    nivelDeEstudio: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    institucion: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    titulo: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    date_inicioEstudio: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    date_finicioEstudio: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    fecha_nacimiento: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   });
 };
