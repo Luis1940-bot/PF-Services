@@ -76,7 +76,7 @@ router.post(
       let mensaje = {};
 
       if (created) {
-        mensaje = { message: "User created" };
+        mensaje = { userCreated: userCreated.id, message: "User created" };
 
         const { id, email, name, surname } = userCreated;
         res.status(201).json(mensaje);
