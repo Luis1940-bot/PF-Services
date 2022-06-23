@@ -20,6 +20,8 @@ const postgenerator = require("./PostGenerator.js");
 const addspecialty = require("./AddSpecialty.js");
 const auctions = require("./auctions.js");
 const contracts = require("./contracts");
+const conversation = require("./conversation");
+const message = require("./message");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -41,5 +43,7 @@ router.use("/", postgenerator);
 router.use("/", addspecialty);
 router.use("/", auctions);
 router.use("/", contracts);
+router.use("/", conversation);
+router.use("/", message);
 
 module.exports = router;
