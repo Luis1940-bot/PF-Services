@@ -34,6 +34,16 @@ router.post("/addContracts", async (req, res) => {
           },
         }
       );
+      await db.Posts.update(
+        {
+          active: false,
+        },
+        {
+          where: {
+            id: postId,
+          },
+        }
+      );
       sender(postId, auctionId);
       res.status(200).send("Contract created");
     } else {
