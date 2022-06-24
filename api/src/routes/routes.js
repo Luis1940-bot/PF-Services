@@ -22,6 +22,9 @@ const auctions = require("./auctions.js");
 const contracts = require("./contracts");
 const conversation = require("./conversation");
 const message = require("./message");
+const checkoutPayment = require("./checkoutPayment.js");
+const controlPayment = require("./controlPayment");
+const validatePremium = require("./validatePremium.js");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -45,5 +48,8 @@ router.use("/", auctions);
 router.use("/", contracts);
 router.use("/", conversation);
 router.use("/", message);
+router.use("/", checkoutPayment);
+router.use("/", controlPayment);
+router.use("/", validatePremium);
 
 module.exports = router;
