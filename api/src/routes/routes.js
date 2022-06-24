@@ -25,6 +25,7 @@ const message = require("./message");
 const checkoutPayment = require("./checkoutPayment.js");
 const controlPayment = require("./controlPayment");
 const validatePremium = require("./validatePremium.js");
+const balanceCero = require("./balanceCero.js");
 
 //Routes and middlewares
 router.use("/", userdblogin);
@@ -51,5 +52,6 @@ router.use("/", message);
 router.use("/", checkoutPayment);
 router.use("/", controlPayment);
 router.use("/", validatePremium);
+router.use("/", balanceCero);
 
 module.exports = router;
