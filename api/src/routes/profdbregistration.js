@@ -30,12 +30,12 @@ router.post(
         nivelDeEstudio,
         institucion,
         titulo,
+        date_inicioEstudio,
+        date_finicioEstudio,
       } = req.body;
       const prodFound = await db.Users.findOne({
         where: {
           id: id_user,
-          date_inicioEstudio,
-          date_finicioEstudio,
         },
         raw: true,
       });
