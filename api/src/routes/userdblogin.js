@@ -143,7 +143,7 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
       res.status(200).json({
         message: "Login success",
         token: tokenFront,
-        // userInformation: userInfoFront,
+        userId: idToken,
       });
     });
   } catch (e) {
