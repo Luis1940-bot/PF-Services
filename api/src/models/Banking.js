@@ -3,14 +3,20 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("bankings", {
-    cvu: {
-      type: DataTypes.STRING,
-      allowNull: true,
+  sequelize.define(
+    "bankings",
+    {
+      cvu: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      alias: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
-    alias: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  });
+    {
+      timestamps: false,
+    }
+  );
 };

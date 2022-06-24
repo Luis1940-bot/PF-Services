@@ -83,7 +83,7 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
       if (!result) {
         return res.status(401).json({ error: "Wrong password" });
       }
-      // console.log("SEQUELIZE userFound", userFound);
+      console.log("SEQUELIZE userFound", userFound);
       // TOKEN JWT
       const userInfoFront = {
         id: userFound.id,
@@ -106,7 +106,7 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
         professionalCreatedAt: userFound["professionals.createdAt"],
         professionalUpdatedAt: userFound["professionals.updatedAt"],
       };
-      // console.log("userInfoFront", userInfoFront);
+      console.log("userInfoFront", userInfoFront);
       const tokenFront = jwt.sign(userInfoFront, process.env.TOKENKEY, {
         expiresIn: "3h",
       });

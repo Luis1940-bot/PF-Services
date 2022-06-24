@@ -1,15 +1,24 @@
-const {DataTypes} = require  ("sequelize");
+const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize) =>{
-    sequelize.define("Message",{
-        conversationId:{
-            type: DataTypes.STRING
-        },
-        sender:{
-            type: DataTypes.STRING
-        },
-        text:{
-            type: DataTypes.STRING
-        }
-    }, {timestamps: true})
-}
+module.exports = (sequelize) => {
+  sequelize.define(
+    "messages",
+    {
+      conversationId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      sender: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      text: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+    },
+    {
+      timestamps: false,
+    }
+  );
+};
