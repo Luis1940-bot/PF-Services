@@ -83,7 +83,7 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
       if (!result) {
         return res.status(401).json({ error: "Wrong password" });
       }
-      console.log("SEQUELIZE userFound", userFound);
+      // console.log("SEQUELIZE userFound", userFound);
       // TOKEN JWT
       const userInfoFront = {
         id: userFound.id,
@@ -92,6 +92,7 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
         lastname: userFound.lastname,
         phone: userFound.phone,
         address: userFound.address,
+        age: userFound.age,
         // countryId: userFound.countryId,
         countryName: userFound["country.name"],
         city: userFound["city.name"],
@@ -103,10 +104,16 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
         professionalPhoto: userFound["professionals.photo"],
         professionalCvu: userFound["professionals.cvu"],
         professionalBalance: userFound["professionals.balance"],
-        professionalCreatedAt: userFound["professionals.createdAt"],
-        professionalUpdatedAt: userFound["professionals.updatedAt"],
+        professionalnivelDeEstudio: userFound["professionals.nivelDeEstudio"],
+        professionalinstitucion: userFound["professionals.institucion"],
+        professionaltitulo: userFound["professionals.titulo"],
+        professionaldate_inicioEstudio:
+          userFound["professionals.date_inicioEstudio"],
+        professionaldate_finicioEstudio:
+          userFound["professionals.date_finicioEstudio"],
       };
-      console.log("userInfoFront", userInfoFront);
+
+      // console.log("userInfoFront", userInfoFront);
       const tokenFront = jwt.sign(userInfoFront, process.env.TOKENKEY, {
         expiresIn: "3h",
       });
@@ -130,13 +137,6 @@ router.post("/userdblogin", userValidShortReg(), validate, async (req, res) => {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-      });
-
-      // RESPONSE
-      res.status(200).json({
-        message: "Login success",
-        token: tokenFront,
-        // userInformation: userInfoFront,
       });
 
       // RESPONSE
