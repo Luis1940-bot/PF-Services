@@ -161,6 +161,7 @@ router.get("/infoDetallePost/:id", async (req, res) => {
 router.get("/infoCardPost", async (req, res) => {
   try {
     const posts = await db.Posts.findAll({
+      where: { active: 1 },
       attributes: [
         "id",
         "hour_post",
