@@ -21,10 +21,21 @@ router.post(
   async (req, res) => {
     console.log("Where? -->>", req.url);
     try {
-      const { id_user, tuition, trainings, photo, cvu } = req.body;
+      const {
+        id_user,
+        tuition,
+        trainings,
+        photo,
+        cvu,
+        nivelDeEstudio,
+        institucion,
+        titulo,
+      } = req.body;
       const prodFound = await db.Users.findOne({
         where: {
           id: id_user,
+          date_inicioEstudio,
+          date_finicioEstudio,
         },
         raw: true,
       });
@@ -35,6 +46,11 @@ router.post(
           photo: photo,
           cvu: cvu,
           userId: id_user,
+          nivelDeEstudio: nivelDeEstudio,
+          institucion: institucion,
+          titulo: titulo,
+          date_inicioEstudio: date_inicioEstudio,
+          date_finicioEstudio: date_finicioEstudio,
         });
         const { id, email, name, surname } = prodFound;
         sendEmailToValidate(email, id, name, surname);
