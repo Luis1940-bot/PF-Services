@@ -7,8 +7,8 @@ router.use(express.json());
 const cors = require("cors");
 router.use(cors());
 
-//?----POSTS------
-router.get("/postsActive", async (req, res) => {
+//?----POSTS---------------------------------------
+router.get("/AllpostsActive", async (req, res) => {
   try {
     const posts = await db.Posts.findAll({
       where: { active: 1 },
@@ -64,29 +64,635 @@ router.get("/postsActive", async (req, res) => {
   }
 });
 
-//?----USERS------
-router.get("/auctions", async (req, res) => {
+router.get("/AllpostsCancel", async (req, res) => {
   try {
+    const posts = await db.Posts.findAll({
+      where: { active: 0 },
+      attributes: [
+        "id",
+        "hour_post",
+        "date_post",
+        "date_ini",
+        "date_fin",
+        "needs",
+        "availableTime_0",
+        "availableTime_1",
+        "agePatient",
+        "namePatient",
+        "addressPatient",
+      ],
+
+      include: [
+        {
+          model: db.Users,
+          attributes: ["id", "name", "surname", "age"],
+
+          //required: true,
+        },
+        {
+          model: db.Specialties,
+          attributes: ["specialty"],
+          //required: true,
+        },
+        {
+          model: db.Cities,
+          attributes: ["name"],
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+
+    if (posts.length > 0) {
+      res.status(201).json(posts);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.put("/cancelPost/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Posts.update(
+        {
+          active: false,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("Post cancel");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
   } catch (error) {
     res.status(400).send(error);
   }
 });
 
-//?-----PROFESSIONALS--------
-router.get("/auctions", async (req, res) => {
+router.put("/activePost/:id", async (req, res) => {
   try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Posts.update(
+        {
+          active: true,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("Post active");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
   } catch (error) {
     res.status(400).send(error);
   }
 });
 
-//?----CONTRACTS ---------
-router.get("/auctions", async (req, res) => {
+//?--------------------------------------------------
+
+//?**----USERS-----------------------------------
+router.get("/AllusersActive", async (req, res) => {
   try {
+    const users = await db.Users.findAll({
+      where: { active: 1 },
+      include: [
+        {
+          model: db.Cities,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+
+    if (users.length > 0) {
+      res.status(201).json(users);
+    } else {
+      res.status(422).json("Not found");
+    }
   } catch (error) {
     res.status(400).send(error);
   }
 });
+
+router.get("/AllusersCancel", async (req, res) => {
+  try {
+    const users = await db.Users.findAll({
+      where: { active: 0 },
+      include: [
+        {
+          model: db.Cities,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+
+    if (users.length > 0) {
+      res.status(201).json(users);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.get("/AllusersValidated_email", async (req, res) => {
+  try {
+    const users = await db.Users.findAll({
+      where: { validated_email: 1 },
+      include: [
+        {
+          model: db.Cities,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+
+    if (users.length > 0) {
+      res.status(201).json(users);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.get("/AllusersNOValidated_email", async (req, res) => {
+  try {
+    const users = await db.Users.findAll({
+      where: { validated_email: 0 },
+      include: [
+        {
+          model: db.Cities,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+          //required: true,
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+
+    if (users.length > 0) {
+      res.status(201).json(users);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/cancelUser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Users.update(
+        {
+          active: false,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("User cancel");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/activeUser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Users.update(
+        {
+          active: true,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("User active");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/validatedEmailUser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Users.update(
+        {
+          validated_email: true,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("User validated Email");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/NOvalidatedEmailUser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Users.update(
+        {
+          validated_email: false,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("User NO validated Email");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/userAdmin/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Users.update(
+        {
+          userType: "admin",
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("User administrador");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/userUsuario/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Users.update(
+        {
+          userType: "usuario",
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("User sin permisos");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+//?**---------------------------------------------
+
+//?-----PROFESSIONALS------------------------------------
+router.get("/AllprofessionalsActive", async (req, res) => {
+  try {
+    const professional = await db.Professionals.findAll({
+      where: { active: true },
+    });
+
+    if (professional.length > 0) {
+      res.status(201).json(professional);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (e) {
+    res.send(e);
+  }
+});
+
+router.get("/AllprofessionalsCancel", async (req, res) => {
+  try {
+    const professional = await db.Professionals.findAll({
+      where: { active: false },
+    });
+
+    if (professional.length > 0) {
+      res.status(201).json(professional);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (e) {
+    res.send(e);
+  }
+});
+
+router.put("/cancelProfessional/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Professionals.update(
+        {
+          active: false,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("Professional cancel");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/activeProfessional/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Professionals.update(
+        {
+          active: true,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("Professional actived");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/balance_0/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Professionals.update(
+        {
+          balance: 0,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("Balance 0");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put("/balance_1/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id && Number.isInteger(parseInt(id))) {
+      await db.Professionals.update(
+        {
+          balance: 1,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      return res.status(200).send("Balance 1");
+    } else {
+      return res.status(400).json({
+        error: "no se envió id",
+      });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+//?---------------------------------------------------------------
+
+//?**----CONTRACTS -------------------------------------
+router.get("/getContracts", async (req, res) => {
+  try {
+    const contracts = await db.Contracts.findAll({
+      attributes: ["id", "price", "date", "hour", "postId"],
+      include: [
+        {
+          model: db.Auctions,
+          attributes: ["id", "offer", "comment", "approved"],
+
+          include: [
+            {
+              model: db.Posts,
+              attributes: [
+                "date_post",
+                "date_ini",
+                "date_fin",
+                "needs",
+                "active",
+                "locationReference",
+                "contact_phone",
+                "agePatient",
+                "namePatient",
+                "addressPatient",
+              ],
+              include: [
+                {
+                  model: db.Cities,
+                  attributes: ["name"],
+                },
+                {
+                  model: db.States,
+                  attributes: ["name"],
+                },
+                {
+                  model: db.Countries,
+                  attributes: ["name"],
+                },
+                {
+                  model: db.Users,
+                  attributes: ["name", "surname", "email", "phone"],
+                },
+              ],
+            },
+            {
+              model: db.Professionals,
+              attributes: ["cvu", "photo"],
+              include: [
+                {
+                  model: db.Users,
+                  attributes: [
+                    "name",
+                    "surname",
+                    "phone",
+                    "age",
+                    "document",
+                    "email",
+                  ],
+                  include: [
+                    {
+                      model: db.Cities,
+                      attributes: ["name"],
+                    },
+                    {
+                      model: db.States,
+                      attributes: ["name"],
+                    },
+                    {
+                      model: db.Countries,
+                      attributes: ["name"],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    if (contracts.length > 0) {
+      res.status(201).json(contracts);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+//?**-------------------------------------------------------
 
 //?-----OFFERS----------
 router.get("/auctions", async (req, res) => {
