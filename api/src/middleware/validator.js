@@ -142,9 +142,20 @@ const validate = (req, res, next) => {
   });
 };
 
+const userValidGoogle = () => {
+  return [
+    body("email")
+      .isEmail()
+      .withMessage("Debe ser un correo electrónico")
+      .notEmpty()
+      .withMessage("No debe estar vacío"),
+  ];
+};
+
 module.exports = {
   userValidationRules,
   userValidShortReg,
   profValidationRules,
   validate,
+  userValidGoogle,
 };
