@@ -19,6 +19,7 @@ router.put("/edituser", async (req, res) => {
     state,
     city,
     country,
+    photo,
   } = req.body;
 
   try {
@@ -37,6 +38,7 @@ router.put("/edituser", async (req, res) => {
         age: age,
         document: document,
         phone2: phone2,
+        photo: photo,
         stateId: state
           ? (
               await db.States.findOne({ where: { name: state } })
