@@ -5,7 +5,13 @@ const db = require("../db.js");
 const router = Router();
 router.use(express.json());
 const cors = require("cors");
-router.use(cors());
+router.use(
+  cors({
+    origin: true,
+    credentials: true,
+    //allowedHeaders: "Content-Type, Authorization",
+  })
+);
 
 router.post("/addContracts", async (req, res) => {
   try {
