@@ -644,13 +644,13 @@ router.get("/AllContractsActivo", async (req, res) => {
                 },
                 {
                   model: db.Users,
-                  attributes: ["name", "surname", "email", "phone"],
+                  attributes: ["name", "surname", "email", "phone", "photo"],
                 },
               ],
             },
             {
               model: db.Professionals,
-              attributes: ["cvu", "photo"],
+              attributes: ["cvu"],
               include: [
                 {
                   model: db.Users,
@@ -661,6 +661,7 @@ router.get("/AllContractsActivo", async (req, res) => {
                     "age",
                     "document",
                     "email",
+                    "photo",
                   ],
                   include: [
                     {
@@ -732,13 +733,13 @@ router.get("/AllContractsTerminado", async (req, res) => {
                 },
                 {
                   model: db.Users,
-                  attributes: ["name", "surname", "email", "phone"],
+                  attributes: ["name", "surname", "email", "phone", "photo"],
                 },
               ],
             },
             {
               model: db.Professionals,
-              attributes: ["cvu", "photo"],
+              attributes: ["cvu"],
               include: [
                 {
                   model: db.Users,
@@ -749,6 +750,7 @@ router.get("/AllContractsTerminado", async (req, res) => {
                     "age",
                     "document",
                     "email",
+                    "photo",
                   ],
                   include: [
                     {
@@ -820,13 +822,13 @@ router.get("/AllContractsCancelado", async (req, res) => {
                 },
                 {
                   model: db.Users,
-                  attributes: ["name", "surname", "email", "phone"],
+                  attributes: ["name", "surname", "email", "phone", "photo"],
                 },
               ],
             },
             {
               model: db.Professionals,
-              attributes: ["cvu", "photo"],
+              attributes: ["cvu"],
               include: [
                 {
                   model: db.Users,
@@ -837,6 +839,7 @@ router.get("/AllContractsCancelado", async (req, res) => {
                     "age",
                     "document",
                     "email",
+                    "photo",
                   ],
                   include: [
                     {

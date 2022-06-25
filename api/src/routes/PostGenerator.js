@@ -122,6 +122,7 @@ router.get("/infoDetallePost/:id", async (req, res) => {
               "document",
               "email",
               "phone2",
+              "photo",
             ],
             //required: true,
           },
@@ -179,7 +180,7 @@ router.get("/infoCardPost", async (req, res) => {
       include: [
         {
           model: db.Users,
-          attributes: ["id", "name", "surname", "age"],
+          attributes: ["id", "name", "surname", "age", "photo"],
 
           //required: true,
         },
@@ -341,6 +342,7 @@ router.get("/posteosUsersByUserID/:id", async (req, res) => {
               "document",
               "email",
               "phone2",
+              "photo",
             ],
             //required: true,
           },
@@ -368,7 +370,7 @@ router.get("/posteosUsersByUserID/:id", async (req, res) => {
             include: [
               {
                 model: db.Professionals,
-                attributes: ["id", "trainings", "photo"],
+                attributes: ["id", "trainings"],
                 // include: [
                 //   {
                 //     model: db.Users,

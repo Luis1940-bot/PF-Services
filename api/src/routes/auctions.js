@@ -73,6 +73,7 @@ router.get("/traerPostByAuction/:id", async (req, res) => {
               "document",
               "email",
               "phone2",
+              "photo",
             ],
             //required: true,
           },
@@ -100,11 +101,11 @@ router.get("/traerPostByAuction/:id", async (req, res) => {
             include: [
               {
                 model: db.Professionals,
-                attributes: ["id", "trainings", "photo"],
+                attributes: ["id", "trainings"],
                 include: [
                   {
                     model: db.Users,
-                    attributes: ["name", "surname", "age"],
+                    attributes: ["name", "surname", "age", "photo"],
                   },
                 ],
               },
