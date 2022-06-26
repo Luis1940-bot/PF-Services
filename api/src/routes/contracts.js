@@ -89,12 +89,10 @@ const sender = async (postId, auctionId) => {
       defaults: {
         senderId: sender.id,
         senderName: sender.name,
-        senderImg:
-          "http://c.files.bbci.co.uk/48DD/production/_107435681_perro1.jpg",
+        senderImg: sender.photo,
         receiverId: receiver.id,
         receiverName: receiver.name,
-        receiverImg:
-          "http://c.files.bbci.co.uk/48DD/production/_107435681_perro1.jpg",
+        receiverImg: receiver.photo,
       },
     });
   } catch (error) {
