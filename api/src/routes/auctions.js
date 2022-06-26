@@ -5,7 +5,13 @@ const db = require("../db.js");
 const router = Router();
 router.use(express.json());
 const cors = require("cors");
-router.use(cors());
+router.use(
+  cors({
+    origin: true, //process.env.URL_CLIENT,
+    credentials: true,
+    //allowedHeaders: "Content-Type, Authorization",
+  })
+);
 
 router.post("/Addpostulates", async (req, res) => {
   try {
