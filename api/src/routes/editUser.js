@@ -11,7 +11,7 @@ const {
 } = require("../middleware/validator.js");
 router.use(cors());
 
-router.put("/edituser", userValidationRules(), validate(), async (req, res) => {
+router.put("/edituser", userValidationRules(), validate, async (req, res) => {
   const {
     id,
     email,
@@ -74,7 +74,7 @@ router.put("/edituser", userValidationRules(), validate(), async (req, res) => {
 router.put(
   "/forgetpassword",
   userValidForgetPassword(),
-  validate(),
+  validate,
   async (req, res) => {
     try {
       const { email, document, password } = req.body;
