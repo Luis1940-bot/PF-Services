@@ -85,11 +85,11 @@ const profValidationRules = () => {
       .withMessage("Debe tener menos de 255 caracteres.")
       .notEmpty()
       .withMessage("No debe estar vacío"),
-    body("photo")
-      .isLength({ max: 50 })
-      .withMessage("Debe tener menos de 50 caracteres")
-      .notEmpty()
-      .withMessage("No debe estar vacío"),
+    // body("photo")
+    //   .isLength({ max: 50 })
+    //   .withMessage("Debe tener menos de 50 caracteres")
+    //   .notEmpty()
+    //   .withMessage("No debe estar vacío"),
     body("cvu")
       .isLength({ min: 0 }, { max: 22 })
       .withMessage("Debe tener menos de 22 caracteres")
