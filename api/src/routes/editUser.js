@@ -1,8 +1,10 @@
 const express = require("express");
+const { Op } = require("sequelize");
 const router = express.Router();
 const db = require("../db.js");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const { userValidForgetPassword } = require("../middleware/validator.js");
 router.use(cors());
 
 router.put("/edituser", async (req, res) => {
@@ -62,6 +64,40 @@ router.put("/edituser", async (req, res) => {
     res
       .status(400)
       .send("El mail ingresado no se encuetra en la base de datos");
+  }
+});
+
+router.put("/forgetpassword", userValidForgetPassword(), async (req, res) => {
+  try {
+    const { email, document, password } = req.body;
+    if (!document) {
+      return res.status(400).send("No ingresó un documento válido");
+    }
+    if (!email) {
+      return res.status(400).send("No ingresó un email");
+    }
+    if (!password) {
+      return res.status(400).send("No ingresó un password");
+    }
+
+    const hash = bcrypt.hashSync(password, 10);
+    await db.Users.update(
+      {
+        password: hash,
+      },
+      {
+        where: {
+          [Op.and]: [
+            { email: email },
+            { document: document },
+            { active: true },
+          ],
+        },
+      }
+    );
+    return res.status(200).send("Password modificado");
+  } catch (error) {
+    res.status(400).send(error);
   }
 });
 
