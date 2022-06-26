@@ -103,7 +103,14 @@ router.get("/traerPostByAuction/:id", async (req, res) => {
           },
           {
             model: db.Auctions,
-            attributes: ["date", "offer", "comment", "approved", "cancel"],
+            attributes: [
+              "id",
+              "date",
+              "offer",
+              "comment",
+              "approved",
+              "cancel",
+            ],
             include: [
               {
                 model: db.Professionals,
