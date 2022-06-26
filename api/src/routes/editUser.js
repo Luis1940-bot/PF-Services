@@ -4,10 +4,14 @@ const router = express.Router();
 const db = require("../db.js");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
-const { userValidForgetPassword } = require("../middleware/validator.js");
+const {
+  userValidForgetPassword,
+  userValidationRules,
+  validate,
+} = require("../middleware/validator.js");
 router.use(cors());
 
-router.put("/edituser", async (req, res) => {
+router.put("/edituser", userValidationRules(), validate(), async (req, res) => {
   const {
     id,
     email,
@@ -67,38 +71,43 @@ router.put("/edituser", async (req, res) => {
   }
 });
 
-router.put("/forgetpassword", userValidForgetPassword(), async (req, res) => {
-  try {
-    const { email, document, password } = req.body;
-    if (!document) {
-      return res.status(400).send("No ingresó un documento válido");
-    }
-    if (!email) {
-      return res.status(400).send("No ingresó un email");
-    }
-    if (!password) {
-      return res.status(400).send("No ingresó un password");
-    }
-
-    const hash = bcrypt.hashSync(password, 10);
-    await db.Users.update(
-      {
-        password: hash,
-      },
-      {
-        where: {
-          [Op.and]: [
-            { email: email },
-            { document: document },
-            { active: true },
-          ],
-        },
+router.put(
+  "/forgetpassword",
+  userValidForgetPassword(),
+  validate(),
+  async (req, res) => {
+    try {
+      const { email, document, password } = req.body;
+      if (!document) {
+        return res.status(400).send("No ingresó un documento válido");
       }
-    );
-    return res.status(200).send("Password modificado");
-  } catch (error) {
-    res.status(400).send(error);
+      if (!email) {
+        return res.status(400).send("No ingresó un email");
+      }
+      if (!password) {
+        return res.status(400).send("No ingresó un password");
+      }
+
+      const hash = bcrypt.hashSync(password, 10);
+      await db.Users.update(
+        {
+          password: hash,
+        },
+        {
+          where: {
+            [Op.and]: [
+              { email: email },
+              { document: document },
+              { active: true },
+            ],
+          },
+        }
+      );
+      return res.status(200).send("Password modificado");
+    } catch (error) {
+      res.status(400).send(error);
+    }
   }
-});
+);
 
 module.exports = router;
