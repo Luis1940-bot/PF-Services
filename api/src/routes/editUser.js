@@ -9,7 +9,13 @@ const {
   userValidationRules,
   validate,
 } = require("../middleware/validator.js");
-router.use(cors());
+router.use(
+  cors({
+    origin: true, //process.env.URL_CLIENT,
+    credentials: true,
+    //allowedHeaders: "Content-Type, Authorization",
+  })
+);
 
 router.put("/edituser", userValidationRules(), validate, async (req, res) => {
   const {

@@ -4,7 +4,13 @@ const db = require("../db.js");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const router = Router();
-router.use(cors());
+router.use(
+  cors({
+    origin: true, //process.env.URL_CLIENT,
+    credentials: true,
+    //allowedHeaders: "Content-Type, Authorization",
+  })
+);
 router.use(express.json());
 const { profValidationRules, validate } = require("../middleware/validator.js");
 
