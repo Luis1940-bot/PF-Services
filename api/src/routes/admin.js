@@ -711,6 +711,95 @@ router.put("/balance_1/:id", async (req, res) => {
 //?---------------------------------------------------------------
 
 //?**----CONTRACTS -------------------------------------
+router.get("/AllContracts", async (req, res) => {
+  try {
+    const contracts = await db.Contracts.findAll({
+      attributes: ["id", "status", "price", "date", "hour", "postId"],
+      include: [
+        {
+          model: db.Auctions,
+          attributes: ["id", "cancel", "offer", "comment", "approved"],
+
+          include: [
+            {
+              model: db.Posts,
+              attributes: [
+                "date_post",
+                "date_ini",
+                "date_fin",
+                "needs",
+                "active",
+                "locationReference",
+                "contact_phone",
+                "agePatient",
+                "namePatient",
+                "addressPatient",
+              ],
+              include: [
+                {
+                  model: db.Cities,
+                  attributes: ["name"],
+                },
+                {
+                  model: db.States,
+                  attributes: ["name"],
+                },
+                {
+                  model: db.Countries,
+                  attributes: ["name"],
+                },
+                {
+                  model: db.Users,
+                  attributes: ["name", "surname", "email", "phone", "photo"],
+                },
+              ],
+            },
+            {
+              model: db.Professionals,
+              attributes: ["cvu"],
+              include: [
+                {
+                  model: db.Users,
+                  attributes: [
+                    "name",
+                    "surname",
+                    "phone",
+                    "age",
+                    "document",
+                    "email",
+                    "photo",
+                  ],
+                  include: [
+                    {
+                      model: db.Cities,
+                      attributes: ["name"],
+                    },
+                    {
+                      model: db.States,
+                      attributes: ["name"],
+                    },
+                    {
+                      model: db.Countries,
+                      attributes: ["name"],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    if (contracts.length > 0) {
+      res.status(201).json(contracts);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 router.get("/AllContractsActivo", async (req, res) => {
   try {
     const contracts = await db.Contracts.findAll({
