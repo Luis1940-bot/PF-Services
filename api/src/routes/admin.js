@@ -8,6 +8,61 @@ const cors = require("cors");
 router.use(cors());
 
 //?----POSTS---------------------------------------
+router.get("/Allposts", async (req, res) => {
+  try {
+    const posts = await db.Posts.findAll({
+      attributes: [
+        "id",
+        "hour_post",
+        "date_post",
+        "date_ini",
+        "date_fin",
+        "needs",
+        "availableTime_0",
+        "availableTime_1",
+        "agePatient",
+        "namePatient",
+        "addressPatient",
+      ],
+
+      include: [
+        {
+          model: db.Users,
+          attributes: ["id", "name", "surname", "age"],
+
+          //required: true,
+        },
+        {
+          model: db.Specialties,
+          attributes: ["specialty"],
+          //required: true,
+        },
+        {
+          model: db.Cities,
+          attributes: ["name"],
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+
+    if (posts.length > 0) {
+      res.status(201).json(posts);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 router.get("/AllpostsActive", async (req, res) => {
   try {
     const posts = await db.Posts.findAll({
