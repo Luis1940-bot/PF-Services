@@ -1417,5 +1417,49 @@ router.put("/activeAuction/:id", async (req, res) => {
   }
 });
 //?--------------------------------------------------------
+//!---------------------------INDICADORES--------------------------
+router.get("/indicadores", async (req, res) => {
+  try {
+    let obj = {
+      usuarios: {},
+    };
+    var { count, rows } = await db.Users.findAndCountAll({
+      where: { active: 1 },
+    });
+    obj.usuarios = count;
+
+    var { count, rows } = await db.Professionals.findAndCountAll({
+      where: { active: 1 },
+    });
+    obj.professionals = count;
+
+    var { count, rows } = await db.Professionals.findAndCountAll({
+      where: {
+        [Op.and]: [{ active: 1 }, { balance: 1 }],
+      },
+    });
+    obj.members = count;
+    var { count, rows } = await db.Posts.findAndCountAll({
+      where: { active: 1 },
+    });
+    obj.posts = count;
+    var { count, rows } = await db.Auctions.findAndCountAll({
+      where: { cancel: 0 },
+    });
+    obj.aplicaciones = count;
+    var { count, rows } = await db.Contracts.findAndCountAll({
+      where: { status: "activo" },
+    });
+    obj.contractsactive = count;
+    obj.priceactivo = await db.Contracts.sum("price", {
+      where: { status: "activo" },
+    });
+    obj.pricetotal = await db.Contracts.sum("price", {});
+
+    return res.status(200).send(obj);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 module.exports = router;
