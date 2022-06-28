@@ -1063,7 +1063,7 @@ router.get("/AllAuctions", async (req, res) => {
 
     const posts = await db.Auctions.findAll({
       where: { cancel: 0 },
-      attributes: ["id", "date", "offer", "comment"],
+      attributes: ["id", "cancel", "date", "offer", "comment"],
       include: [
         {
           model: db.Posts,
