@@ -260,4 +260,66 @@ router.get("/auctions", async (req, res) => {
   res.json(auctions);
 });
 
+router.get("/auctionsByProfessiona/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id || !Number.isInteger(parseInt(id))) {
+      return res.status(400).json("No ingresó id correcto");
+    }
+
+    const auctions = await db.Auctions.findAll({
+      where: {
+        [Op.and]: [{ cancel: 0 }, { professionalId: id }],
+      },
+      attributes: ["id", "date", "offer", "comment"],
+      include: [
+        {
+          model: db.Posts,
+          attributes: [
+            "date_post",
+            "date_ini",
+            "date_fin",
+            "needs",
+            "locationReference",
+            "availableTime_0",
+            "availableTime_1",
+            "agePatient",
+            "namePatient",
+            "addressPatient",
+          ],
+
+          include: [
+            {
+              model: db.Cities,
+              attributes: ["name"],
+            },
+            {
+              model: db.States,
+              attributes: ["name"],
+            },
+            {
+              model: db.Countries,
+              attributes: ["name"],
+              //required: true,
+            },
+          ],
+        },
+
+        {
+          model: db.Professionals,
+        },
+      ],
+    });
+
+    if (auctions.length > 0) {
+      res.status(201).json(auctions);
+    } else {
+      res.status(422).json("Not found");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;
