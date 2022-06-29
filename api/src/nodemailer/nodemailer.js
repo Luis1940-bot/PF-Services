@@ -61,12 +61,21 @@ function sendSimpleEmail(emailTo, subject, text, name, surname) {
   });
 }
 
-function sendAuctionEmail(emailTo, subject, text, name, surname) {
+function sendAuctionEmail(
+  emailTo,
+  username,
+  usersurname,
+  offer,
+  comment,
+  profname,
+  profsurname,
+  needs
+) {
   const mailOptions = {
     from: auth.user,
     to: emailTo,
-    subject: subject,
-    html: `<p>Bienvenida/o ${name} ${surname}.</p><p>${text}</p><a href="${process.env.URL_MAIL}/">Acceda a ClickCare!</a>`,
+    subject: "ClickCare -Oferta a su postulación",
+    html: `<p><strong>${username} ${usersurname}</strong> ha recibido una oferta a su necesidad de: ${needs}.</p><p>El profesional <strong>${profname} ${profsurname}</strong> respondió con una oferta de: <strong>$${offer}</strong></p>${comment}<p>Gracias por utilizar ClickCare.</p><a href="${process.env.URL_CLIENT_MAIL}"></a><br>`,
   };
 
   console.log("mailOptions", mailOptions);
@@ -81,4 +90,4 @@ function sendAuctionEmail(emailTo, subject, text, name, surname) {
 
 // sendEmail("dlorko@gmail.com", "prueba", "prueba texto");
 
-module.exports = { sendEmailToValidate, sendSimpleEmail };
+module.exports = { sendEmailToValidate, sendSimpleEmail, sendAuctionEmail };

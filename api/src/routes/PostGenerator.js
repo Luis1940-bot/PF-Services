@@ -215,7 +215,7 @@ router.get("/infoCardPost", async (req, res) => {
   }
 });
 
-router.delete("/deletePost/:id", async (req, res) => {
+router.delete("/deletePostxxx/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -395,9 +395,9 @@ router.get("/posteosUsersByUserID/:id", async (req, res) => {
   }
 });
 
-router.get("/searchPost", async (req, res) => {
+router.get("/searchPost/:needs", async (req, res) => {
   try {
-    const { needs } = req.body;
+    const needs = decodeURI(req.params.needs);
 
     const posts = await db.Posts.findAll({
       where: { active: 1 },
@@ -442,8 +442,8 @@ router.get("/searchPost", async (req, res) => {
         },
       ],
     });
-    if (needs || needs != undefined) {
-      if (posts.length > 0) {
+    if (needs) {
+      if (posts) {
         let postByNeed = await posts.filter((e) =>
           e.needs.toLowerCase().includes(needs.toString().toLowerCase())
         );
@@ -458,7 +458,6 @@ router.get("/searchPost", async (req, res) => {
         res.status(422).json("Not found");
       }
     }
-    function traerTodosPost() {}
   } catch (error) {
     res.send(error);
   }
