@@ -61,6 +61,24 @@ function sendSimpleEmail(emailTo, subject, text, name, surname) {
   });
 }
 
+function sendAuctionEmail(emailTo, subject, text, name, surname) {
+  const mailOptions = {
+    from: auth.user,
+    to: emailTo,
+    subject: subject,
+    html: `<p>Bienvenida/o ${name} ${surname}.</p><p>${text}</p><a href="${process.env.URL_MAIL}/">Acceda a ClickCare!</a>`,
+  };
+
+  console.log("mailOptions", mailOptions);
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+}
+
 // sendEmail("dlorko@gmail.com", "prueba", "prueba texto");
 
 module.exports = { sendEmailToValidate, sendSimpleEmail };

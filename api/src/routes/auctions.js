@@ -272,7 +272,7 @@ router.get("/auctionsByProfessiona/:id", async (req, res) => {
       where: {
         [Op.and]: [{ cancel: 0 }, { professionalId: id }],
       },
-      attributes: ["id", "date", "offer", "comment"],
+      attributes: ["id", "approved", "date", "offer", "comment"],
       include: [
         {
           model: db.Posts,
