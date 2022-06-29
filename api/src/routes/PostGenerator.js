@@ -394,4 +394,74 @@ router.get("/posteosUsersByUserID/:id", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+router.get("/searchPost", async (req, res) => {
+  try {
+    const { needs } = req.body;
+
+    const posts = await db.Posts.findAll({
+      where: { active: 1 },
+      attributes: [
+        "id",
+        "hour_post",
+        "date_post",
+        "date_ini",
+        "date_fin",
+        "needs",
+        "availableTime_0",
+        "availableTime_1",
+        "agePatient",
+        "namePatient",
+        "addressPatient",
+      ],
+
+      include: [
+        {
+          model: db.Users,
+          attributes: ["id", "name", "surname", "age", "photo"],
+
+          //required: true,
+        },
+        {
+          model: db.Specialties,
+          attributes: ["specialty"],
+          //required: true,
+        },
+        {
+          model: db.Cities,
+          attributes: ["name"],
+        },
+        {
+          model: db.States,
+          attributes: ["name"],
+        },
+        {
+          model: db.Countries,
+          attributes: ["name"],
+          //required: true,
+        },
+      ],
+    });
+    if (needs || needs != undefined) {
+      if (posts.length > 0) {
+        let postByNeed = await posts.filter((e) =>
+          e.needs.toLowerCase().includes(needs.toString().toLowerCase())
+        );
+        res.status(201).json(postByNeed);
+      } else {
+        res.status(422).json("Not found");
+      }
+    } else {
+      if (posts.length > 0) {
+        res.status(201).json(posts);
+      } else {
+        res.status(422).json("Not found");
+      }
+    }
+    function traerTodosPost() {}
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 module.exports = router;
