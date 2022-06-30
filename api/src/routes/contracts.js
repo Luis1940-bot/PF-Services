@@ -68,7 +68,7 @@ router.post("/addContracts", async (req, res) => {
         var usuario = res1[2].find((user) => user.id === userId);
         var profesional = res1[2].find((user) => user.id === profesionalId);
         sendContractEmail(
-          usuario.email,
+          profesional.email,
           usuario.name,
           usuario.surname,
           offer,
